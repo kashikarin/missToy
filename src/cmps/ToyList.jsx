@@ -15,8 +15,8 @@ export function ToyList({toys, onRemoveToy}){
                 </div>
                 <section className='toy-li-buttons-container'>
                     <button onClick={()=>onRemoveToy(toy._id)}>{removeIcon}</button>
-                    <Link to=''><button>{detailsIcon}</button></Link>
-                    <Link to=''><button>{editIcon}</button></Link>
+                    <Link to={`/toy/${toy._id}`}><button>{detailsIcon}</button></Link>
+                    <Link to={`/toy/edit/${toy._id}`}><button>{editIcon}</button></Link>
                 </section>
             </li>)}
         </ul>

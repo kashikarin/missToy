@@ -1,3 +1,5 @@
+import { toyService } from "../../services/toy.service"
+
 export const SET_TOYS = 'SET_TOYS'
 export const REMOVE_TOY = 'REMOVE_TOY'
 export const ADD_TOY = 'ADD_TOY'
@@ -6,7 +8,7 @@ export const SET_FILTERSORT = 'SET_FILTERSORT'
 
 const initialState = {
     toys: [],
-    filterSort: {}
+    filterSort: toyService.getDefaultFilter()
 }
 
 export function toyReducer(state = initialState, cmd){

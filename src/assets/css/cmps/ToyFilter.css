@@ -18,7 +18,6 @@
     align-items: center;
     gap: 10px;
     width: 80%;
-    box-sizing: border-box;
 }
 
 .toy-filter-container form input,

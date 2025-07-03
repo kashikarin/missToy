@@ -8,5 +8,5 @@ export function useEffectUpdate(cb, dependencies) {
                 return
             }
         return cb()
-    }, [dependencies])    
+    }, dependencies)    
 }

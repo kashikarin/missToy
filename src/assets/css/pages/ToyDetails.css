@@ -1,0 +1,48 @@
+.toy-details-wrapper {
+    width: 100vw;
+    height: 100vh;
+    background-color: whitesmoke;
+    padding: 40px;
+}
+.toy-details-container {
+    display: grid;
+    grid-template-columns: minmax(30px, 1fr) 4fr minmax(30px 1fr);
+    grid-template-rows: 60% 30% 10%;
+    border-radius: 20px;
+    background-color: white;
+    width: 50vw;
+    height: 60vh;
+    margin-inline: auto;
+    position: relative;
+    
+
+}
+
+.toy-details-container img {
+    object-fit: contain;
+    height: 400px;
+    width: 100%;
+}
+
+.p-label {
+  text-decoration: underline;
+  font-weight: 500;
+  font-size: 22px;
+}
+
+.toy-detail-line {
+    display: flex;
+    gap: 10px;
+    font-size: 22px;
+    line-height: 2;
+    margin-inline-start: 30px;
+}
+
+.toy-details-container a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    width: 100px;
+
+}

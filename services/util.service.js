@@ -7,7 +7,8 @@ export const utilService = {
     animateCSS,
     elapsedTime,
     debounce,
-    getTruthyValues
+    getTruthyValues,
+    getFormattedDate
 }
 
 function makeId(length = 6) {
@@ -99,3 +100,8 @@ function getTruthyValues(obj) {
     return truthyObj
 }
 
+function getFormattedDate(time) {
+    const date = new Date(time)
+    const formattedDate = date.toLocaleDateString()
+    return formattedDate
+}

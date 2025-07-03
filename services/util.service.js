@@ -6,7 +6,8 @@ export const utilService = {
     saveToStorage,
     animateCSS,
     elapsedTime,
-    debounce
+    debounce,
+    getTruthyValues
 }
 
 function makeId(length = 6) {
@@ -85,5 +86,16 @@ function debounce(func, timeout = 1000) {
             func.apply(this, args)
         }, timeout)
     }
+}
+
+function getTruthyValues(obj) {
+    const truthyObj = {}
+    for (const key in obj) {
+        const val = obj[key]
+        if (val || typeof val === 'boolean') {
+            truthyObj[key] = val
+        }
+    }
+    return truthyObj
 }
 

@@ -1,0 +1,53 @@
+.edit-toy-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 40%;
+    padding: 20px;
+    background-color: var(--clr1bg);
+    border-radius: 20px;
+    margin: 40px auto;
+}
+
+.edit-toy-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+}
+
+.edit-inputs-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.edit-toy-container form button {
+    align-self: center;
+    width: 100px;
+
+}
+.edit-toy-container h3 {
+    color: var(--clr2);
+    font-size: 2em;
+
+}
+
+.edit-toy-container input {
+    color: var(--clr1bg);
+    min-width: 0;
+    flex: 1 1 100px;
+    max-width: 100%;    
+}
+
+.edit-toy-container input::placeholder {
+    color: var(--clr1bg);
+}
+
+.edit-inputs-wrapper select {
+    flex: 1 1 100px;
+    min-width: 0;
+    max-width: 100%;
+}

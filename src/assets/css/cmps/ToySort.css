@@ -1,0 +1,9 @@
+.toysort-select-wrapper {
+    position: relative;
+}
+
+.toysort-select-wrapper span {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}

@@ -1,0 +1,137 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    
+    /* -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; */
+}
+
+img {
+    max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+    font-weight: normal;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    /* color: inherit; */
+    cursor: pointer;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    padding: 10px;
+    font-size: 1.1em;
+    padding: 10px;
+    height: 35px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'DM Sans', sans-serif;
+    border: 1px solid var(--clr1bg);
+    cursor: pointer;
+    color: var(--clr1bg);
+    background-color: var(--clr2);
+    * {
+        pointer-events: none;
+    }
+    transition: transform 0.5s ease;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+input,
+select {
+    /* transition: transform 0.5s ease; */
+    border-radius: 15px;
+    height: 35px;
+    width: 180px;
+    font-size: 1.1em;
+    padding: 10px;
+    border: 1px solid var(--clr1bg);
+    font-family: 'DM Sans', sans-serif;
+}
+
+select:focus {
+    outline: none;
+    color: var(--clr1bg);
+}
+
+input::placeholder {
+    color: var(--clr1bg);
+}
+
+form input:focus {
+    outline: none;
+    color: var(--clr1bg);
+}
+
+select {
+    padding: 5px;   
+    appearance: none;  
+    color: var(--clr1bg);
+
+}
+
+
+/* MAC like scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    background-color: rgba(0, 0, 0, 0);
+    -webkit-border-radius: 100px;
+}
+
+::-webkit-scrollbar:hover {
+    background-color: rgba(0, 0, 0, 0.09);
+}
+
+::-webkit-scrollbar-thumb:vertical {
+    background: rgba(0, 0, 0, 0.5);
+    -webkit-border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:vertical:active {
+    -webkit-border-radius: 100px;
+}
+
+/* .main-app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+} */
+
+/* .main-app main {
+    flex-grow: 1;
+    width: 100%;
+}
+
+.main-app>footer {
+    background-color: #111;
+    color: white;
+} */

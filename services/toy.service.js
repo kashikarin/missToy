@@ -1,10 +1,8 @@
 
 import { storageService } from './async-storage.service.js'
-// import { userService } from './user.service.js'
-import { getRandomIntInclusive } from './util.service.js'
+import { utilService } from './util.service.js'
 
 const STORAGE_KEY = 'toyDB'
-// const PAGE_SIZE = 3
 _createToys()
 
 export const toyService = {
@@ -14,7 +12,9 @@ export const toyService = {
     remove,
     getEmptyToy,
     // getRandomToy,
-    getDefaultFilter
+    getDefaultFilter,
+    getExistingLabels,
+    getFilterFromSearchParams
 }
 
 function query(filterSort = {}) {   
@@ -25,16 +25,12 @@ function query(filterSort = {}) {
                 toys = toys.filter(toy => regExp.test(toy.name))
             }
 
-            if (filterSort.label) {
-                const regExp = new RegExp(filterSort.label, 'i')
-                toys = toys.filter(toy => {
-                    const toyLabels = toy.labels.map(label => label.toLocaleLowerCase()) 
-                    return toyLabels.include(filterSort.label.toLocaleLowerCase())
-                })
+            if (Array.isArray(filterSort.labels) && filterSort.labels.length) {
+                toys = toys.filter(toy => filterSort.labels.some(filteredLabel => toy.labels.includes(filteredLabel)))
             }
 
-            if (filterSort.inStock !== 'all') {
-                toys = toys.filter(toy => (toy.inStock ? toy.inStock : !toy.inStock))
+            if (filterSort.status !== 'all') {
+                toys = toys.filter(toy => (toy.status ? toy.status : !toy.status))
             }
 
             if (filterSort.sorting === 'name') {
@@ -65,27 +61,16 @@ function remove(toyId) {
 
 function save(toy) {
     if (toy._id) {
-        return storageService.put(STORAGE_KEY, toy)
-    } else {
-        //* when switching to backend - remove the next line
-        toy.owner = userService.getLoggedinUser()
-        return storageService.post(STORAGE_KEY, toy)
-    }
-}
-
-function save(toy) {
-    if (toy._id) {
-        // TODO - updatable fields
         toy.updatedAt = Date.now()
         return storageService.put(STORAGE_KEY, toy)
     } else {
-        todo.createdAt = todo.updatedAt = Date.now()
+        toy.createdAt = toy.updatedAt = Date.now()
         return storageService.post(STORAGE_KEY, toy)
     }
 }
 
 function getEmptyToy(name = '', labels = []) {
-    return { name, labels, inStock: true }
+    return { name, labels, status: true }
 }
 
 // function getRandomToy() {
@@ -96,14 +81,35 @@ function getEmptyToy(name = '', labels = []) {
 // }
 
 function getDefaultFilter() {
-    return { name: '', inStock: '', label: '', sort: '' }
+    return { name: '', status: '', labels: [], sort: '' }
+}
+
+async function getExistingLabels(filterSort){
+    const toys = await query(filterSort)
+    if (!toys || !toys.length) return []
+    let labelsMap = {}
+    for (let i=0; i<toys.length; i++) {
+        for (let j=0; j<toys[i].labels?.length; j++){
+            if (!labelsMap[toys[i].labels[j]]) labelsMap[toys[i].labels[j]] = 1
+        }
+    }
+    return Object.keys(labelsMap)  
+}
+
+function getFilterFromSearchParams(searchParams) {
+    const defaultFilter = getDefaultFilter()
+    const filterSort = {}
+    for (const field in defaultFilter) {
+        filterSort[field] = searchParams.get(field) || ''
+    }
+    return filterSort
 }
 
 function _createToys() {
     let toys = utilService.loadFromStorage(STORAGE_KEY)
     if (!toys || !toys.length) {
         toys = []
-        const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdoor', 'Battery Powered']
+        const labels = ['On Wheels', 'Box Game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdoor', 'Battery Powered']
         const names = ['Talking Doll', 'Remote Control Car', 'Scooter', 'Play Doh', 'Puzzle', 'Cards Game']
         for (let i = 0; i < 20; i++) {
             const toyName = names[utilService.getRandomIntInclusive(0, names.length - 1)]
@@ -111,17 +117,23 @@ function _createToys() {
             switch(toyName) {
                 case names[0]: 
                     toyLabels.push(labels[3], labels[4], labels[7]) 
+                    break
                 case names[1]:
                     toyLabels.push(labels[0], labels[7]) 
+                    break
                 case names[2]:
                     toyLabels.push(labels[6]) 
+                    break
                 case names[3]:
                     toyLabels.push(labels[2]) 
+                    break
                 case names[4]:
                     toyLabels.push(labels[1], labels[5]) 
+                    break
                 case names[5]:
                     toyLabels.push(labels[1]) 
-
+                    break
+                default: break
             }
             toys.push(_createToy(toyName + (i + 1), toyLabels))
         }
@@ -133,7 +145,9 @@ function _createToy(name, labels) {
     const toy = getEmptyToy(name, labels)
     toy._id = utilService.makeId()
     toy.createdAt = toy.updatedAt = Date.now() - utilService.getRandomIntInclusive(0, 1000 * 60 * 60 * 24)
-    toy.price = getRandomIntInclusive(50, 250)
+    toy.price = utilService.getRandomIntInclusive(50, 250)
+    toy.imageUrl = `/toy-images/${name.replaceAll(" ", "").replace(/[0-9]/g, '')}.jpg`
+
     return toy
 }
 

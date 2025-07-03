@@ -1,0 +1,70 @@
+import { useEffect, useState } from "react"
+import { useNavigate, useParams } from "react-router"
+import { toyService } from "../../services/toy.service"
+import { saveToy } from "../../store/actions/toy.actions"
+
+export function ToyEdit(){
+    const params = useParams()
+    const emptyToy = {name: '', price: '', status: true}
+    const [toyToEdit, setToyToEdit] = useState(emptyToy)
+    const navigate = useNavigate()
+    useEffect(()=>{
+        if (params.toyId) {
+            loadToy()
+        }
+    }, [])
+    
+    async function loadToy(){
+        try {
+            const toy = await toyService.getById(params.toyId)
+            setToyToEdit(toy)
+        } catch(err) {  
+            console.log('Failed to load toy')
+        }
+    }
+    function handleChange({target}){
+        const field = target.name
+        let value = target.value
+
+        switch (target.type) {
+            case 'number':
+            case 'range':
+                value = +value || ''
+                break
+
+            case 'checkbox':
+                value = target.checked
+                break
+
+            default: break
+        }
+
+        setToyToEdit(prevToyToEdit => ({ ...prevToyToEdit, [field]: value }))
+    }
+
+    async function handleSubmit(ev) {
+        ev.preventDefault()
+        await saveToy(toyToEdit)
+        navigate('/toy')
+    }
+
+    const {name, price, status} = toyToEdit
+
+    return(
+        <section className="edit-toy-container">
+            <h3>{params.toyId? "Update a Toy" : "Add a Toy" }</h3>
+            <form onSubmit={handleSubmit}>
+                <div className="edit-inputs-wrapper">
+                    <input type="text" name='name' autoComplete='off' value={name} placeholder='Toy Name' onChange={handleChange}/>
+                    <input type="number" name='price' value={price} placeholder='Toy Price' onChange={handleChange}/>
+                    <select name="status" onChange={handleChange} >
+                        <option value={true} defaultChecked>In Stock</option>
+                        <option value={false}>Soldout</option>
+                    </select>
+                </div>
+                <button>Save</button>
+            </form>
+        </section>
+        
+    )
+}

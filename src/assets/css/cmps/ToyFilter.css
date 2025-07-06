@@ -6,6 +6,7 @@
     color: var(--clr1bg);
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
     position: fixed;
     top: 70px;
     left: 0;
@@ -48,21 +49,6 @@
     color: var(--clr1bg);
 
 }
-
-
-/* .labels-select__control {
-    border-radius: 15px;
-    height: 35px;
-    width: 180px;
-    font-size: 1.1em;
-    border: 1px solid var(--clr1bg);
-    font-family: 'DM Sans', sans-serif;
-    padding: 5px;   
-    appearance: none;  
-    color: var(--clr1bg);
-    background-color: #610303;
-} */
-
 
 .labels-select:focus {
     outline: none;

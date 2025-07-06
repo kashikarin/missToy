@@ -50,7 +50,6 @@ export function ToyDetails(){
                     </p>
                 </article>
                 <Link className='button-like' to='/toy'>Back</Link>
-                
             </section>
         </div>
         

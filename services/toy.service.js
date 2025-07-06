@@ -33,15 +33,15 @@ function query(filterSort = {}) {
                 toys = toys.filter(toy => (toy.status ? toy.status : !toy.status))
             }
 
-            if (filterSort.sorting === 'name') {
+            if (filterSort.sort === 'name') {
                 toys = toys.sort((a, b) => a.name.localeCompare(b.name))
             }
 
-            if (filterSort.sorting === 'price') {
+            if (filterSort.sort === 'price') {
                 toys = toys.sort((a, b) =>  b.price - a.price)
             }
 
-            if (filterSort.sorting === 'createdAt') {
+            if (filterSort.sort === 'createdAt') {
                 toys = toys.sort((a, b) =>  b.createdAt - a.createdAt)
             }
             return toys

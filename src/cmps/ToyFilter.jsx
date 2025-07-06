@@ -63,7 +63,59 @@ export function ToyFilter({filterSort, onSetFilterSort, existingLabels}){
         <section className="toy-filter-container">
             <form autoComplete="off">
                 <input type="text" name='name' placeholder='Toy Name' value={name} onChange={handleChange}/>
-                <Select classNamePrefix="labels-select" isMulti options={getMultipleSelectOptions(existingLabels)} value={selectedOptions} placeholder='Type a label' name="labels" onChange={setSelectedOptions} >
+                <Select styles={{control: (base, state) => ({
+                        ...base, 
+                        borderRadius: '15px', 
+                        height: '35px', 
+                        width: '350px', 
+                        fontSize: '1.1em', 
+                        border: '1px solid var(--clr1bg)',
+                        boxShadow: 'none',
+                        fontFamily: '"DM Sans", sans-serif',
+                        color: 'var(--clr1bg)',
+                        display: 'flex',
+                        padding: 0,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        flexWrap: 'wrap'
+                          })
+                        ,
+                       placeholder: base => ({
+                            ...base, 
+                            // textAlign: 'center',
+                            color: 'var(--clr1bg)'
+                       }),
+                       valueContainer: base => ({
+                        ...base,
+                        height: '100%',
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        alignItems: 'center',
+                        padding: '2px 6px',
+                        gap: '4px',
+                        maxHeight: '100',
+                        // overflowY: 'auto'
+                       }),
+                       IndicatorSeparator: base => ({
+                        ...base,
+                        display: 'none'
+                       }),
+                       multiValue: base => ({
+                        ...base,
+                        backgroundColor: 'none',
+                        borderRadius: '10px',
+                        border: '1px dotted var(--clr1bg)',
+                        color: 'var(--clr1bg)'
+                       }),
+                       multiValueLabel: base => ({
+                        ...base,
+                        color: 'var(--clr1bg)'
+                       })
+                    }}
+                    isMulti 
+                    components={{ IndicatorSeparator: () => null }}
+                    options={getMultipleSelectOptions(existingLabels)} value={selectedOptions} placeholder='Type a label' name="labels" onChange={setSelectedOptions} 
+                >
                 </Select>
                 <div className="toyfilter-select-wrapper">
                     <select name="status" id="status" onChange={handleChange}>
@@ -75,7 +127,9 @@ export function ToyFilter({filterSort, onSetFilterSort, existingLabels}){
                 </div>
                 <button onClick={onClearFilter}>Clear</button>
             </form>
-            <ToySort onSetFilterSort={onSetFilterSort}/>
+            <div className="filter-sort-wrapper">
+                <ToySort onSetFilterSort={onSetFilterSort}/>\
+            </div>
         </section>
     )
 }

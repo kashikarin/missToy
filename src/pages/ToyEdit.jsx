@@ -2,9 +2,11 @@ import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router"
 import { toyService } from "../../services/toy.service"
 import { saveToy } from "../../store/actions/toy.actions"
+import Loader from '../assets/images/Loader.svg'
 
 export function ToyEdit(){
     const params = useParams()
+    const [isLoading, setIsLoading] = useState(false)
     const emptyToy = {name: '', price: '', status: true}
     const [toyToEdit, setToyToEdit] = useState(emptyToy)
     const navigate = useNavigate()
@@ -44,10 +46,12 @@ export function ToyEdit(){
 
     async function handleSubmit(ev) {
         ev.preventDefault()
+        setIsLoading(true)
         await saveToy(toyToEdit)
         navigate('/toy')
     }
-
+    
+    const loader = <img style={{width: '100%', height: '100%', objectFit: 'contain'}}src={Loader} alt='Saving...'/>
     const {name, price, status} = toyToEdit
 
     return(
@@ -62,7 +66,7 @@ export function ToyEdit(){
                         <option value={false}>Soldout</option>
                     </select>
                 </div>
-                <button>Save</button>
+                <button style={{padding: "0"}}>{isLoading? loader : 'Save'}</button>
             </form>
         </section>
         

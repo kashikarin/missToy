@@ -34,15 +34,15 @@ function query(filterSort = {}) {
             }
 
             if (filterSort.sort === 'name') {
-                toys = toys.sort((a, b) => a.name.localeCompare(b.name))
+                toys = toys.sort((a, b) => (filterSort.sortOrder === 1)? a.name.localeCompare(b.name) : b.name.localeCompare(a.name))
             }
 
             if (filterSort.sort === 'price') {
-                toys = toys.sort((a, b) =>  b.price - a.price)
+                toys = toys.sort((a, b) =>  (a.price - b.price) * filterSort.sortOrder)
             }
 
             if (filterSort.sort === 'createdAt') {
-                toys = toys.sort((a, b) =>  b.createdAt - a.createdAt)
+                toys = toys.sort((a, b) =>  (b.createdAt - a.createdAt) * filterSort.sortOrder)
             }
             return toys
         })
@@ -81,7 +81,7 @@ function getEmptyToy(name = '', labels = []) {
 // }
 
 function getDefaultFilter() {
-    return { name: '', status: '', labels: [], sort: '' }
+    return { name: '', status: '', labels: [], sort: '', sortOrder: 1 }
 }
 
 async function getExistingLabels(filterSort){
@@ -146,7 +146,7 @@ function _createToy(name, labels) {
     toy._id = utilService.makeId()
     toy.createdAt = toy.updatedAt = Date.now() - utilService.getRandomIntInclusive(0, 1000 * 60 * 60 * 24)
     toy.price = utilService.getRandomIntInclusive(50, 250)
-    toy.imageUrl = `/toy-images/${name.replaceAll(" ", "").replace(/[0-9]/g, '')}.jpg`
+    toy.imageUrl = `/toy-images/${name.replaceAll(" ", "").replace(/[0-9]/g, '')}.png`
 
     return toy
 }

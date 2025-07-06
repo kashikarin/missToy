@@ -3,7 +3,7 @@ import { ToyList } from "../cmps/ToyList";
 import { ToyFilter } from "../cmps/ToyFilter";
 import { useSelector } from "react-redux";
 import { toyService } from "../../services/toy.service";
-import { useEffect, useState } from "react";
+import { useEffect, useState, ReactComponent } from "react";
 import { useTruthyFilterSearchParams } from "../../customHooks/useTruthyFilterSearchParams";
 import { loadToys, setFilterSort, removeToy } from "../../store/actions/toy.actions";
 
@@ -37,7 +37,7 @@ export function ToyIndex(){
       await removeToy(toyId)
 
   }
-      return(
+  return(
       <section className="toy-index-container">
         <ToyFilter filterSort={filterSort} onSetFilterSort={onSetFilterSort} existingLabels={existingLabels}/>
         <Link to='/toy/edit'><button>Add Toy</button></Link>

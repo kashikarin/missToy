@@ -69,7 +69,7 @@
 }
 
 /* Buttons */
-.simple-button {
+/* .simple-button {
     background: transparent;
     color: black;
     font-size: inherit;
@@ -79,7 +79,7 @@
     transition: 0.3s all;
     padding: 0;
     cursor: pointer;
-}
+} */
 
 .btn {
     background: none;

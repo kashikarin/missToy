@@ -69,21 +69,23 @@ export function ToyFilter({filterSort, onSetFilterSort, existingLabels}){
                         height: '35px', 
                         width: '350px', 
                         fontSize: '1.1em', 
-                        border: '1px solid var(--clr1bg)',
+                        border: '1px solid var(--clr2bg)',
                         boxShadow: 'none',
                         fontFamily: '"DM Sans", sans-serif',
-                        color: 'var(--clr1bg)',
+                        color: 'var(--clr2bg)',
                         display: 'flex',
+                        transition: 'none',
                         padding: 0,
                         justifyContent: 'center',
                         alignItems: 'center',
-                        flexWrap: 'wrap'
+                        flexWrap: 'wrap',
+                        backgroundColor: 'var(--clr3)'
                           })
                         ,
                        placeholder: base => ({
                             ...base, 
                             // textAlign: 'center',
-                            color: 'var(--clr1bg)'
+                            color: 'var(--clr2bg)'
                        }),
                        valueContainer: base => ({
                         ...base,
@@ -104,12 +106,12 @@ export function ToyFilter({filterSort, onSetFilterSort, existingLabels}){
                         ...base,
                         backgroundColor: 'none',
                         borderRadius: '10px',
-                        border: '1px dotted var(--clr1bg)',
-                        color: 'var(--clr1bg)'
+                        border: '1px dotted var(--clr2bg)',
+                        color: 'var(--clr2bg)'
                        }),
                        multiValueLabel: base => ({
                         ...base,
-                        color: 'var(--clr1bg)'
+                        color: 'var(--clr2bg)'
                        })
                     }}
                     isMulti 
@@ -128,7 +130,7 @@ export function ToyFilter({filterSort, onSetFilterSort, existingLabels}){
                 <button onClick={onClearFilter}>Clear</button>
             </form>
             <div className="filter-sort-wrapper">
-                <ToySort onSetFilterSort={onSetFilterSort}/>\
+                <ToySort onSetFilterSort={onSetFilterSort}/>
             </div>
         </section>
     )

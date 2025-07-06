@@ -7,6 +7,7 @@
     position: relative;
     height: 100%;
     width: 100%;
+    color: var(--clr1)
 }
 
 .toy-preview-container img {
@@ -41,7 +42,7 @@
 
 .toy-preview-labels-container span {
     border-radius: 5px;
-    color: var(--clr2);
+    color: var(--clr1);
     border: 1px solid var(--gray1);
     font-size: 0.8em;
     padding: 2px;
@@ -50,14 +51,14 @@
     align-self: end;
 }
 .toy-preview-labels-container span:nth-child(1) {
-    background-color: var(--clr1bg);
-}
-
-.toy-preview-labels-container span:nth-child(2) {
     background-color: var(--clr2bg);
 }
 
-.toy-preview-labels-container span:nth-child(3) {
+.toy-preview-labels-container span:nth-child(2) {
     background-color: var(--clr3bg);
+}
+
+.toy-preview-labels-container span:nth-child(3) {
+    background-color: var(--clr4bg);
 }
 

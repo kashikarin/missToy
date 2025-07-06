@@ -1,3 +1,7 @@
+/* Setup */
+@import "./setup/vars.css";
+@import "./setup/typography.css";
+
 /*  Basics */
 @import "./basics/base.css";
 @import "./basics/helpers.css";
@@ -16,11 +20,7 @@
 @import "./cmps/AppHeader.css";
 @import "./cmps/ToyFilter.css";
 @import "./cmps/ToySort.css";
+@import "./cmps/ThemeSwitcher.css";
 
-
-
-/* Setup */
-@import "./setup/vars.css";
-@import "./setup/typography.css";
 
 

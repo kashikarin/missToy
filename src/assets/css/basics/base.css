@@ -6,12 +6,14 @@ html {
     font-family: 'DM Sans', sans-serif;
     font-size: 16px;
     scroll-behavior: smooth;
+
 }
 
 body {
     margin: 0;
     min-height: 100vh;
-    
+    transition: background-color 1s ease, color 1s ease;
+    background-color: var(--clr1bg);
     /* -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale; */
 }
@@ -38,10 +40,6 @@ a {
     cursor: pointer;
 }
 
-a:hover {
-    text-decoration: underline;
-}
-
 button {
     font-size: 1.1em;
     padding: 10px;
@@ -51,10 +49,10 @@ button {
     justify-content: center;
     align-items: center;
     font-family: 'DM Sans', sans-serif;
-    border: 1px solid var(--clr1bg);
+    border: 1px solid var(--clr2);
     cursor: pointer;
-    color: var(--clr1bg);
-    background-color: var(--clr2);
+    color: var(--clr2);
+    background-color: var(--clr3);
     * {
         pointer-events: none;
     }
@@ -73,45 +71,69 @@ select {
     width: 180px;
     font-size: 1.1em;
     padding: 10px;
-    border: 1px solid var(--clr1bg);
+    border: 1px solid var(--clr2);
     font-family: 'DM Sans', sans-serif;
 }
 
 select:focus {
     outline: none;
-    color: var(--clr1bg);
+    color: var(--clr2);
 }
 
 input::placeholder {
-    color: var(--clr1bg);
+    color: var(--clr2);
 }
 
 form input:focus {
     outline: none;
-    color: var(--clr1bg);
+    color: var(--clr2);
 }
 
 select {
     padding: 5px;   
     appearance: none;  
-    color: var(--clr1bg);
+    color: var(--clr2);
 
 }
 
+input[type='checkbox'] {
+    appearance: none;
+    display: inline-block;
+    height: 3px;
+    width: 3px;
+    border: 1px solid var(--clr2);
+    box-shadow: none;
+    border-radius: 3px;
+    color: var(--clr2);
+    cursor: pointer;
+    position: relative;
+}
+
+input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 4px;
+  width: 4px;
+  height: 8px;
+  border: solid var(--clr2);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg); 
+}
 
 /* MAC like scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
-    background-color: rgba(0, 0, 0, 0);
+    background-color: var(--clr1);
     -webkit-border-radius: 100px;
 }
 
 ::-webkit-scrollbar:hover {
-    background-color: rgba(0, 0, 0, 0.09);
+    background-color: var(--clr1);
 }
 
 ::-webkit-scrollbar-thumb:vertical {
-    background: rgba(0, 0, 0, 0.5);
+    background: var(--clr1);
     -webkit-border-radius: 100px;
 }
 
@@ -144,10 +166,10 @@ select {
     justify-content: center;
     align-items: center;
     font-family: 'DM Sans', sans-serif;
-    border: 1px solid var(--clr1bg);
+    border: 1px solid var(--clr2bg);
     cursor: pointer;
     color: var(--clr1bg);
-    background-color: var(--clr2);
+    background-color: var(--clr1);
     * {
         pointer-events: none;
     }
@@ -157,3 +179,4 @@ select {
 .button-like:hover {
     transform: scale(1.1);
 }
+

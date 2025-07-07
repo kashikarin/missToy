@@ -7,11 +7,11 @@ import { AppHeader } from './cmps/AppHeader'
 import { ToyDetails } from './pages/ToyDetails'
 import { ToyEdit } from './pages/ToyEdit'
 import { Home } from './pages/Home'
-import { About } from './pages/About'
+import { About } from './pages/About/About'
 import { store } from '../store/store'
 import { Provider } from 'react-redux'
-
-
+import { Vision } from './pages/About/Vision'
+import { Team } from './pages/About/Team'
 
 export default function App() {
 
@@ -23,7 +23,10 @@ export default function App() {
               <main className="main-layout">
                 <Routes>
                   <Route path='' element={<Home />}/>
-                  <Route path='/about' element={<About />} />
+                  <Route path='/about' element={<About />}>
+                    <Route path='/about/team' element={<Team />}/>
+                    <Route path='/about/vision' element={<Vision />}/>
+                  </Route>
                   <Route path='/toy' element={<ToyIndex />} />
                   <Route path='/toy/:toyId' element={<ToyDetails />} />
                   <Route path='/toy/edit' element={<ToyEdit />} />

@@ -7,7 +7,7 @@
     position: relative;
     height: 100%;
     width: 100%;
-    color: var(--clr1)
+    color: var(--clr1);
 }
 
 .toy-preview-container img {
@@ -26,6 +26,7 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
+    font-size: 1.2rem;
 
 }
 
@@ -37,12 +38,11 @@
     white-space: nowrap;
     position: absolute;
     bottom: 0;
-
 }
 
 .toy-preview-labels-container span {
     border-radius: 5px;
-    color: var(--clr1);
+    color: whitesmoke;
     border: 1px solid var(--gray1);
     font-size: 0.8em;
     padding: 2px;

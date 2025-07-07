@@ -7,6 +7,7 @@ import { useEffect, useState, ReactComponent } from "react";
 import { useTruthyFilterSearchParams } from "../../customHooks/useTruthyFilterSearchParams";
 import { loadToys, setFilterSort, removeToy } from "../../store/actions/toy.actions";
 
+
 export function ToyIndex(){
 
   const filterSort = useSelector(state => state.toyModule.filterSort)
@@ -35,7 +36,6 @@ export function ToyIndex(){
 
   async function onRemoveToy(toyId) {
       await removeToy(toyId)
-
   }
   return(
       <section className="toy-index-container">

@@ -1,9 +1,8 @@
 import { useState } from "react"
 
-
 export function ThemeSwitcher(){
     const [colorTheme, setColorTheme] = useState('light')
-    const body = document.getElementById('root')
+    const body = document.body
 
     function switchTheme(){
         if (colorTheme === 'light') {
@@ -14,8 +13,6 @@ export function ThemeSwitcher(){
             body.classList.remove('dark')
         }
     }
-
-console.log(colorTheme);
 
     return(
         <div className="theme-switcher-container" onClick={switchTheme}>

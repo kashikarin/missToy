@@ -84,7 +84,6 @@ export function ToyFilter({filterSort, onSetFilterSort, existingLabels}){
                         ,
                        placeholder: base => ({
                             ...base, 
-                            // textAlign: 'center',
                             color: 'var(--clr2bg)'
                        }),
                        valueContainer: base => ({

@@ -1,21 +1,21 @@
 * {
     box-sizing: border-box;
+
 }
 
 html {
     font-family: 'DM Sans', sans-serif;
     font-size: 16px;
     scroll-behavior: smooth;
-
 }
 
 body {
     margin: 0;
     min-height: 100vh;
-    transition: background-color 1s ease, color 1s ease;
     background-color: var(--clr1bg);
     /* -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale; */
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 img {
@@ -41,10 +41,9 @@ a {
 }
 
 button {
-    font-size: 1.1em;
+    font-size: 1.1rem;
     padding: 10px;
-    height: 35px;
-    border-radius: 15px;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -158,18 +157,17 @@ input[type="checkbox"]:checked::after {
 } */
 
 .button-like {
-    font-size: 1.1em;
+    font-size: 1.1rem;
     padding: 10px;
-    height: 35px;
-    border-radius: 15px;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: 'DM Sans', sans-serif;
-    border: 1px solid var(--clr2bg);
+    border: 1px solid var(--clr2);
     cursor: pointer;
-    color: var(--clr1bg);
-    background-color: var(--clr1);
+    color: var(--clr2);
+    background-color: var(--clr3);
     * {
         pointer-events: none;
     }

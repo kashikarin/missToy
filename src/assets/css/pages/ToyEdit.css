@@ -1,3 +1,11 @@
+.toy-edit-wrapper {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--clr1bg);
+    margin: 0;
+    padding: 50px;
+}
+
 .edit-toy-container {
     display: flex;
     flex-direction: column;
@@ -7,7 +15,7 @@
     padding: 20px;
     background-color: var(--clr2bg);
     border-radius: 20px;
-    margin: 40px auto;
+    margin-inline: auto;
 }
 
 .edit-toy-container form {
@@ -30,24 +38,27 @@
 
 }
 .edit-toy-container h3 {
-    color: var(--clr1);
+    color: var(--clr3);
     font-size: 2em;
 
 }
 
 .edit-toy-container input {
-    color: var(--clr1bg);
+    color: var(--clr2);
     min-width: 0;
     flex: 1 1 100px;
     max-width: 100%;    
+    background-color: var(--clr3);
 }
 
 .edit-toy-container input::placeholder {
-    color: var(--clr1bg);
+    color: var(--clr2);
 }
 
 .edit-inputs-wrapper select {
     flex: 1 1 100px;
     min-width: 0;
     max-width: 100%;
+    background-color: var(--clr3);
+    padding-inline: 10px;
 }

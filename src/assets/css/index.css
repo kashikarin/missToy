@@ -4,8 +4,6 @@
 
 /*  Basics */
 @import "./basics/base.css";
-@import "./basics/helpers.css";
-@import "./basics/layout.css";
 
 /* Pages */
 @import "./pages/Home.css";
@@ -13,6 +11,9 @@
 @import "./pages/ToyDetails.css";
 @import "./pages/ToyEdit.css";
 @import "./pages/About.css";
+@import "./pages/Team.css";
+@import "./pages/Vision.css";
+
 
 /* Components */
 @import "./cmps/ToyList.css";

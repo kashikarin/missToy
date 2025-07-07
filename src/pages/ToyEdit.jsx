@@ -55,20 +55,23 @@ export function ToyEdit(){
     const {name, price, status} = toyToEdit
 
     return(
-        <section className="edit-toy-container">
-            <h3>{params.toyId? "Update a Toy" : "Add a Toy" }</h3>
-            <form onSubmit={handleSubmit}>
-                <div className="edit-inputs-wrapper">
-                    <input type="text" name='name' autoComplete='off' value={name} placeholder='Toy Name' onChange={handleChange}/>
-                    <input type="number" name='price' value={price} placeholder='Toy Price' onChange={handleChange}/>
-                    <select name="status" onChange={handleChange} >
-                        <option value={true} defaultChecked>In Stock</option>
-                        <option value={false}>Soldout</option>
-                    </select>
-                </div>
-                <button style={{padding: "0"}}>{isLoading? loader : 'Save'}</button>
-            </form>
-        </section>
+        <div className="toy-edit-wrapper">
+            <section className="edit-toy-container">
+                <h3>{params.toyId? "Update a Toy" : "Add a Toy" }</h3>
+                <form onSubmit={handleSubmit}>
+                    <div className="edit-inputs-wrapper">
+                        <input type="text" name='name' autoComplete='off' value={name} placeholder='Toy Name' onChange={handleChange}/>
+                        <input type="number" name='price' value={price} placeholder='Toy Price' onChange={handleChange}/>
+                        <select name="status" onChange={handleChange} >
+                            <option value={true} defaultChecked>In Stock</option>
+                            <option value={false}>Soldout</option>
+                        </select>
+                    </div>
+                    <button style={{padding: "0"}}>{isLoading? loader : 'Save'}</button>
+                </form>
+            </section>
+        </div>
+        
         
     )
 }

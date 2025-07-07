@@ -1,8 +1,12 @@
 
 
 .about-team-container  {
+    &>h1 {
+        color: var(--clr2);
+    }
     li {
         font-size: 20px;
         line-height: 1.5;
+        color: var(--clr1);
     }
 }

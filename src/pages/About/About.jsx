@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react"
 import { toyService } from "../../../services/toy.service"
-import { ToyList } from "../../cmps/ToyList"
-import { loadToys } from "../../../store/actions/toy.actions"
 import { NavLink, Outlet } from "react-router"
 
 

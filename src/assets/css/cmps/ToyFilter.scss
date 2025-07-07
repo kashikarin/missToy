@@ -23,12 +23,15 @@
             height: 35px;
             width: 180px;
             font-size: 1.1em;
-            padding: 10px;
+            padding: 5px;
             border: 1px solid var(--clr2);
             font-family: 'DM Sans', sans-serif;
             background-color: var(--clr3);    
             appearance: none;  
             color: var(--clr2);
+        }
+        button {
+            padding: 4px 10px 4px;
         }
     }
 }
@@ -41,8 +44,3 @@
         top: 5px;
     }
 }
-
-/* .labels-select:focus {
-    outline: none;
-    color: var(--clr2);
-} */

@@ -1,5 +1,8 @@
 export function Home(){
     return(
-        <h1>Welcome to miss Toys!</h1>
+        <div className="home-container">
+            <h1 className='home-h1'>Welcome to missToys!</h1>
+        </div>
+        
     )
 }

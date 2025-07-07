@@ -1,0 +1,62 @@
+.toy-preview-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 10px;
+    padding: 10px;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    color: var(--clr1);
+}
+
+.toy-preview-info {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 1.2rem;
+    img {
+            height: 200px;          
+            width: 100%;
+            object-fit: contain;
+        }
+
+    h2 {
+        font-size: clamp(12px, 5vw, 24px); 
+    }
+}
+
+.toy-preview-labels-container {
+    display: flex;
+    gap: 5px;
+    justify-content: start;
+    width: 100%;
+    white-space: nowrap;
+    position: absolute;
+    bottom: 0;
+
+    span {
+        border-radius: 5px;
+        color: whitesmoke;
+        border: 1px solid var(--gray1);
+        font-size: 0.8em;
+        padding: 2px;
+        white-space: nowrap;
+        width: max-content;
+        align-self: end;
+
+        &:nth-child(1) {
+            background-color: var(--clr2bg);
+        }
+
+        &:nth-child(2) {
+            background-color: var(--clr3bg);
+        }
+
+        &:nth-child(3) {
+            background-color: var(--clr4bg);
+        }
+    }
+}
+

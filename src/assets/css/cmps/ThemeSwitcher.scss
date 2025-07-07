@@ -1,0 +1,22 @@
+.theme-switcher-container {
+    cursor: pointer;    
+    margin-right: 10px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 10px;
+    
+    span {
+        font-size: 20px;
+        color: whitesmoke;
+    }
+    i {
+        font-size: 30px;
+        color: whitesmoke;
+        transition: font-size 1s ease;
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+}
+

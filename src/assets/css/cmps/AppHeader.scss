@@ -1,0 +1,45 @@
+.app-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 20px;
+    background-color: var(--clr2bg);
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.misstoys-logo {
+    font-size: 1.5em;
+    font-family: 'Caprasimo';
+    color: var(--clr3);
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.nav-container {
+    margin-inline-end: 20px;
+    display: flex;
+    gap: 20px;
+    font-size: 1.2rem;
+    a {
+        color: rgb(245, 190, 202);
+    }
+    nav {
+        display: flex;
+        gap: 40px;
+        margin-inline-end: 100px;
+        font-size: 22px;
+        &>a {
+            cursor: pointer;
+            .active {
+                    color: rgb(240, 155, 183);
+                    font-weight: 600;
+                    text-decoration: underline;
+            }
+        }
+    }
+    }
+    

@@ -56,15 +56,13 @@ button {
         pointer-events: none;
     }
     transition: transform 0.5s ease;
-}
-
-button:hover {
-    transform: scale(1.1);
+    &:hover {
+        transform: scale(1.1);
+    }
 }
 
 input,
 select {
-    /* transition: transform 0.5s ease; */
     border-radius: 15px;
     height: 35px;
     width: 180px;
@@ -74,28 +72,17 @@ select {
     font-family: 'DM Sans', sans-serif;
 }
 
-select:focus {
-    outline: none;
-    color: var(--clr2);
-}
+input {
+    &::placeholder {
+        color: var(--clr2);
+    }
+    
+    &:focus {
+        outline: none;
+        color: var(--clr2);
+    }
 
-input::placeholder {
-    color: var(--clr2);
-}
-
-form input:focus {
-    outline: none;
-    color: var(--clr2);
-}
-
-select {
-    padding: 5px;   
-    appearance: none;  
-    color: var(--clr2);
-
-}
-
-input[type='checkbox'] {
+    &[type='checkbox'] {
     appearance: none;
     display: inline-block;
     height: 3px;
@@ -107,8 +94,7 @@ input[type='checkbox'] {
     cursor: pointer;
     position: relative;
 }
-
-input[type="checkbox"]:checked::after {
+    &[type="checkbox"]:checked::after {
   content: '';
   position: absolute;
   left: 8px;
@@ -118,6 +104,15 @@ input[type="checkbox"]:checked::after {
   border: solid var(--clr2);
   border-width: 0 2px 2px 0;
   transform: rotate(45deg); 
+}
+
+}
+
+select {
+    padding: 5px;   
+    appearance: none;  
+    color: var(--clr2);
+
 }
 
 /* MAC like scrollbar */
@@ -172,9 +167,8 @@ input[type="checkbox"]:checked::after {
         pointer-events: none;
     }
     transition: transform 0.5s ease;
-}
 
-.button-like:hover {
-    transform: scale(1.1);
+    &:hover {
+        transform: scale(1.1);
+    }
 }
-

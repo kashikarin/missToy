@@ -16,49 +16,47 @@
     background-color: var(--clr2bg);
     border-radius: 20px;
     margin-inline: auto;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        button {
+            align-self: center;
+            width: 100px;
+        }
+    }
+    h3 {
+        color: var(--clr3);
+        font-size: 2em;
+    }
+    
 }
 
-.edit-toy-container form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-
-}
 
 .edit-inputs-wrapper {
     display: flex;
     justify-content: center;
     gap: 15px;
     flex-wrap: wrap;
-}
-
-.edit-toy-container form button {
-    align-self: center;
-    width: 100px;
-
-}
-.edit-toy-container h3 {
-    color: var(--clr3);
-    font-size: 2em;
-
-}
-
-.edit-toy-container input {
+    
+    input {
     color: var(--clr2);
     min-width: 0;
     flex: 1 1 100px;
     max-width: 100%;    
     background-color: var(--clr3);
+    &::placeholder {
+        color: var(--clr2);
+    }
+    }
+
+    select {
+        flex: 1 1 100px;
+        min-width: 0;
+        max-width: 100%;
+        background-color: var(--clr3);
+        padding-inline: 10px;
+    }
 }
 
-.edit-toy-container input::placeholder {
-    color: var(--clr2);
-}
-
-.edit-inputs-wrapper select {
-    flex: 1 1 100px;
-    min-width: 0;
-    max-width: 100%;
-    background-color: var(--clr3);
-    padding-inline: 10px;
-}

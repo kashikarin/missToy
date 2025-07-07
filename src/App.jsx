@@ -1,6 +1,6 @@
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
-import './assets/css/index.css'
+import './assets/css/index.scss'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { ToyIndex } from './pages/ToyIndex'
 import { AppHeader } from './cmps/AppHeader'

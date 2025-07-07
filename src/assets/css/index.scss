@@ -1,0 +1,27 @@
+/* Setup */
+@import "./setup/vars.scss";
+@import "./setup/typography.scss";
+
+/*  Basics */
+@import "./basics/base.scss";
+
+/* Pages */
+@import "./pages/Home.scss";
+@import "./pages/ToyIndex.scss";
+@import "./pages/ToyDetails.scss";
+@import "./pages/ToyEdit.scss";
+@import "./pages/About.scss";
+@import "./pages/Team.scss";
+@import "./pages/Vision.scss";
+
+
+/* Components */
+@import "./cmps/ToyList.scss";
+@import "./cmps/ToyPreview.scss";
+@import "./cmps/AppHeader.scss";
+@import "./cmps/ToyFilter.scss";
+@import "./cmps/ToySort.scss";
+@import "./cmps/ThemeSwitcher.scss";
+
+
+

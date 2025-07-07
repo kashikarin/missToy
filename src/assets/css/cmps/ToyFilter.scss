@@ -1,0 +1,48 @@
+.toy-filter-container {
+    width: 100%;
+    border-bottom: 1px solid var(--clr2);
+    padding: 10px;
+    background-color: var(--clr3);
+    color: var(--clr2);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    z-index: 9;
+    form {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 80%;
+        
+        input,
+        select {
+            border-radius: 15px;
+            height: 35px;
+            width: 180px;
+            font-size: 1.1em;
+            padding: 10px;
+            border: 1px solid var(--clr2);
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--clr3);    
+            appearance: none;  
+            color: var(--clr2);
+        }
+    }
+}
+
+.toyfilter-select-wrapper {
+    position: relative;
+    span {
+        position: absolute;
+        right: 10px;
+        top: 5px;
+    }
+}
+
+/* .labels-select:focus {
+    outline: none;
+    color: var(--clr2);
+} */

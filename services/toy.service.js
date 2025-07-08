@@ -20,6 +20,8 @@ export const toyService = {
 function query(filterSort = {}) {   
     return storageService.query(STORAGE_KEY)
         .then(toys => {
+            let multiplier = filterSort.sortOrder 
+            if (filterSort.sortOrder === "") multiplier = 1
             if (filterSort.name) {
                 const regExp = new RegExp(filterSort.name, 'i')
                 toys = toys.filter(toy => regExp.test(toy.name))
@@ -34,15 +36,15 @@ function query(filterSort = {}) {
             }
 
             if (filterSort.sort === 'name') {
-                toys = toys.sort((a, b) => (filterSort.sortOrder === 1)? a.name.localeCompare(b.name) : b.name.localeCompare(a.name))
+                toys = toys.sort((a, b) => (multiplier === 1)? a.name.localeCompare(b.name) : b.name.localeCompare(a.name))
             }
 
             if (filterSort.sort === 'price') {
-                toys = toys.sort((a, b) =>  (a.price - b.price) * filterSort.sortOrder)
+                toys = toys.sort((a, b) =>  (a.price - b.price) * multiplier)
             }
 
             if (filterSort.sort === 'createdAt') {
-                toys = toys.sort((a, b) =>  (b.createdAt - a.createdAt) * filterSort.sortOrder)
+                toys = toys.sort((a, b) =>  (b.createdAt - a.createdAt) * multiplier)
             }
             return toys
         })

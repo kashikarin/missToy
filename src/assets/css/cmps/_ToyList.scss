@@ -1,6 +1,6 @@
 .toy-list-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 20px;
     list-style-type: none;
     width: 90%;
@@ -38,7 +38,7 @@
     gap: 10px;
     padding-top: 10px;
     flex-shrink: 0;
-    &>.button-like {
+    > .button-like {
         width: 40px;
         height: 40px;
         padding: 0;

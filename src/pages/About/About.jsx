@@ -1,15 +1,9 @@
-import { useState, useEffect } from "react"
-import { toyService } from "../../../services/toy.service"
 import { NavLink, Outlet } from "react-router"
 
 
 export function About(){
     
-    const [toys, setToys] = useState([])
-    useEffect(()=>{
-        toyService.query()
-            .then(setToys)
-    })
+   
     return(
         <div className='about-container'>    
             <h1>About missToys</h1>

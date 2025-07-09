@@ -1,0 +1,14 @@
+@use "sass:math";
+
+
+@function em($pixels, $context: 16px) {
+    @return math.div($pixels, $context) * 1em
+}
+
+@function lh($size, $context: 16px) {
+    @return math.div($size, $context)
+}
+
+@function rem($size) {
+    @return math.div($size, 16px) * 1rem
+}

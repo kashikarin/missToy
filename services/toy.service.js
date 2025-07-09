@@ -103,6 +103,7 @@ function getFilterFromSearchParams(searchParams) {
     const filterSort = {}
     for (const field in defaultFilter) {
         filterSort[field] = searchParams.get(field) || ''
+        if (field === sortOrder && searchParams.get(field) === "") filterSort[field] = 1
     }
     return filterSort
 }

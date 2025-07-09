@@ -2,10 +2,10 @@ export const SET_COLOR_THEME = 'SET_COLOR_THEME'
 
 
 const initialState = {
-    colorTheme: 'light',
+    colorTheme: '',
 }
 
-export function userReducer(state = initialState, cmd){
+export function systemReducer(state = initialState, cmd){
     switch (cmd.type){
         case SET_COLOR_THEME:
             return {...state, 

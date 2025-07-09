@@ -21,9 +21,7 @@ export function ToyList({toys, onRemoveToy}){
     return(
         <ul className="toy-list-container">
             {!Array.isArray(toys) || toys.length === 0? loader : toys.map(toy => <li key={toy._id}>
-                <div className="toy-preview-wrapper">
-                    <ToyPreview toy={toy}/>
-                </div>
+                <ToyPreview toy={toy}/>
                 <section className='toy-li-buttons-container'>
                     <button onClick={()=>{handleRemove(toy._id)}}>{removeIcon}</button>
                     <Link className='button-like' to={`/toy/${toy._id}`}>{detailsIcon}</Link>

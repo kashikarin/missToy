@@ -27,6 +27,8 @@ export function ToyFilter({filterSort, onSetFilterSort, existingLabels}){
     } 
 
     useEffectUpdate(()=>{
+        console.log('useeffectupdate runs');
+        
         debouncedOnSetFilterRef(filterSortToEdit)       
     }, [filterSortToEdit])
 

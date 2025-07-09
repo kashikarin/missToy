@@ -24,16 +24,18 @@ export function ToyIndex(){
   const setSearchParamsFromTruthyFilter = useTruthyFilterSearchParams()
 
   useEffect(()=>{
-    (async function onUpdateFilter(){
-      await loadToys()
-      setSearchParamsFromTruthyFilter(filterSort)
-    })()
+    onUpdateFilter()
   }, [filterSort])
 
   function onSetFilterSort(filterSortObj) {
-      setFilterSort(filterSortObj)
+    console.log('onsetfilter - index (debounced) runs');
+    setFilterSort(filterSortObj)
   }
 
+  async function onUpdateFilter(){
+      await loadToys()
+      setSearchParamsFromTruthyFilter(filterSort)
+    }
   async function onRemoveToy(toyId) {
       await removeToy(toyId)
   }

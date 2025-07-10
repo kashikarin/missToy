@@ -1,16 +1,21 @@
 import { toyService } from "../../services/toy.service";
+import { SET_ISLOADING } from "../reducers/system.reducer";
 import { ADD_TOY, REMOVE_TOY, SET_QUERYOPTIONS, SET_TOYS, UPDATE_TOY } from "../reducers/toy.reducer";
 import { store } from "../store";
 
 
 export async function loadToys(){
     const queryOptions = store.getState().toyModule.queryOptions
+    store.dispatch({type: SET_ISLOADING, isLoading: true})
     try {
         const toys = await toyService.query(queryOptions)
         store.dispatch({type: SET_TOYS, toys})
     } catch(err){
         console.error('toy actions => failed to load toys', err)
         throw err
+    } finally {
+        store.dispatch({type: SET_ISLOADING, isLoading: false})
+
     }
 }
 

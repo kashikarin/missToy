@@ -5,15 +5,18 @@ import { utilService } from './util.service.js'
 const STORAGE_KEY = 'toyDB'
 _createToys()
 
+const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdoor', 'Battery Powered']
+
 export const toyService = {
     query,
     getById,
+    labels,
     save,
     remove,
     getEmptyToy,
     // getRandomToy,
     getDefaultQueryOptions,
-    getExistingLabels,
+    // getExistingLabels,
     getQueryOptionsFromSearchParams
 }
 
@@ -76,20 +79,20 @@ function getEmptyToy(name = '', labels = []) {
 }
 
 function getDefaultQueryOptions() {
-    return { name: '', status: '', labels: [], sort: '', sortOrder: 1 }
+    return { name: '', status: '', labels: [], sort: '', sortOrder: "" }
 }
 
-async function getExistingLabels(queryOptions){
-    const toys = await query(queryOptions)
-    if (!toys || !toys.length) return []
-    let labelsMap = {}
-    for (let i=0; i<toys.length; i++) {
-        for (let j=0; j<toys[i].labels?.length; j++){
-            if (!labelsMap[toys[i].labels[j]]) labelsMap[toys[i].labels[j]] = 1
-        }
-    }
-    return Object.keys(labelsMap)  
-}
+// async function getExistingLabels(queryOptions){
+//     const toys = await query(queryOptions)
+//     if (!toys || !toys.length) return []
+//     let labelsMap = {}
+//     for (let i=0; i<toys.length; i++) {
+//         for (let j=0; j<toys[i].labels?.length; j++){
+//             if (!labelsMap[toys[i].labels[j]]) labelsMap[toys[i].labels[j]] = 1
+//         }
+//     }
+//     return Object.keys(labelsMap)  
+// }
 
 function getQueryOptionsFromSearchParams(searchParams) {
     const defaultQueryOptions = getDefaultQueryOptions()

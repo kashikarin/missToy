@@ -6,7 +6,7 @@ import Select from 'react-select'
 import { useEffectUpdate } from "../../customHooks/useEffectUpdate"
 
 
-export function ToyFilter({queryOptions, onSetQueryOptions, existingLabels}){
+export function ToyFilter({queryOptions, onSetQueryOptions}){
     const [queryOptionsToEdit, setQueryOptionsToEdit] = useState(queryOptions)
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     const [isFilterVisible, setIsFilterVisible] = useState('')
@@ -44,8 +44,8 @@ export function ToyFilter({queryOptions, onSetQueryOptions, existingLabels}){
     }, [isFilterVisible])
 
     //update the labels' field in the filter
-    useEffect(()=>{
-        let labels = []
+    useEffectUpdate(()=>{
+        let labels = []      
         let selectedLabels = selectedOptions.map(selectedOption => labels.push(selectedOption.value))
         if (isSelectedLabelsUpdated(selectedLabels)) return
         setQueryOptionsToEdit(prevQueryOptions => ({...prevQueryOptions, labels}))
@@ -151,7 +151,7 @@ export function ToyFilter({queryOptions, onSetQueryOptions, existingLabels}){
                         }}
                         isMulti 
                         components={{ IndicatorSeparator: () => null }}
-                        options={getMultipleSelectOptions(existingLabels)} value={selectedOptions} placeholder='Type a label' name="labels" onChange={setSelectedOptions} 
+                        options={getMultipleSelectOptions(toyService.labels)} value={selectedOptions} placeholder='Type a label' name="labels" onChange={setSelectedOptions} 
                     >
                     </Select>
                     <div className="toyfilter-select-wrapper">

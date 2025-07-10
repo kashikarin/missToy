@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react"
+import { useEffectUpdate } from "../../customHooks/useEffectUpdate"
 
 export function ToySort({onSetQueryOptions}){
     
     const [sort, setSort] = useState({sort: '', sortOrder: ''})
     
-    useEffect(()=>{
+    useEffectUpdate(()=>{
         onSetQueryOptions(sort)
     }, [sort])
 

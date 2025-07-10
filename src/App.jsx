@@ -20,7 +20,7 @@ export default function App() {
         <Router>
             <section className="app main-layout">
               <AppHeader />
-              <main className="">
+              <main>
                 <Routes>
                   <Route path='' element={<Home />}/>
                   <Route path='/about' element={<About />}>

@@ -12,16 +12,13 @@
     };
     @include for-narrow-layout {
         @include gtc($narrow-breakpoint - 1px);
-        background-color: #8fe20a;
     };
     @include for-normal-layout {
         @include gtc($normal-breakpoint);
-        background-color: #d11b1b;
     };
 
     @include for-wide-layout {
         @include gtc($wide-breakpoint);
-        background-color: #7a50ec;
     };
     
 }

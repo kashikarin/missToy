@@ -27,7 +27,8 @@
     }
     h3 {
         color: var(--clr3);
-        font-size: 2em;
+        font-size: 1.5rem;
+        
     }
 
     .save-toy-btn {
@@ -43,6 +44,9 @@
     }
     @include for-wide-layout {
         width: 60%;
+        h3 {
+            font-size: 2rem;
+        }
     }
     
     

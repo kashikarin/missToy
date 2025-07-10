@@ -1,7 +1,7 @@
 .toy-details-wrapper {
     width: 100vw;
     height: 100vh;
-    background-color: whitesmoke;
+    background-color: var(--clr3);
     padding: 40px;
 }
 
@@ -10,11 +10,17 @@
     grid-template-columns: minmax(30px, 1fr) 4fr minmax(30px 1fr);
     grid-template-rows: 60% 30% 10%;
     border-radius: 20px;
-    background-color: white;
-    width: 30vw;
+    background-color: var(--clr1bg);
+    width: 80vw;
     height: 60vh;
     margin-inline: auto;
     position: relative;
+    color: var(--clr1);
+    @include for-normal-layout {
+        width: 60vw;
+        height: 70vh;
+    }
+    
     a {
         display: flex;
         justify-content: center;

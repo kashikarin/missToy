@@ -5,15 +5,22 @@
     justify-content: end;
     align-items: center;
     gap: 10px;
+    width: max-content;
     
     span {
-        font-size: 20px;
+        font-size: 18px;
         color: whitesmoke;
+        @include for-normal-layout {
+            font-size: 20px;
+        }
     }
     i {
-        font-size: 30px;
+        font-size: 20px;
         color: whitesmoke;
         transition: font-size 1s ease;
+        @include for-normal-layout {
+            font-size: 30px;
+        }
         &:hover {
             transform: scale(1.1);
         }

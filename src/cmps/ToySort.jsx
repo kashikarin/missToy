@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react"
 
-export function ToySort({onSetFilterSort}){
+export function ToySort({onSetQueryOptions}){
     
     const [sort, setSort] = useState({sort: '', sortOrder: ''})
     
     useEffect(()=>{
-        onSetFilterSort(sort)
+        onSetQueryOptions(sort)
     }, [sort])
 
     function handleChange({target}){       

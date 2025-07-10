@@ -1,14 +1,18 @@
 .toysort-wrapper {
     display: flex;
-    justify-content: end;
+    flex-direction: row;
+    justify-content: start;
     align-items: center;
     gap: 10px;
-    
+        @include for-normal-layout {
+            display: flex;
+            gap: 15px;
+        }
     .toysort-select-wrapper {
         position: relative;
-        
         select {
             background-color: var(--clr3);
+            width: 200px;
         }
         span {
             position: absolute;

@@ -5,13 +5,13 @@
 };
 
 @mixin for-normal-layout {
-    @media (min-width: $normal-breakpoint) {
+    @media (min-width: $narrow-breakpoint) {
         @content;
     }
 };
 
 @mixin for-wide-layout {
-    @media (min-width: $wide-breakpoint) {
+    @media (min-width: $normal-breakpoint) {
         @content;
     }
 };

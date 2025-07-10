@@ -1,5 +1,5 @@
 import { useEffect,useState } from "react"
-import { Link, useNavigate, useParams } from "react-router"
+import { Link, useParams } from "react-router"
 import { toyService } from "../../services/toy.service"
 import { utilService } from "../../services/util.service"
 
@@ -26,31 +26,31 @@ export function ToyDetails(){
     return(
         <div className="toy-details-wrapper">
                 <section className="toy-details-container">
-                <img src={toy.imageUrl} alt={`${toy.name}'s image`} />
-                <article className="toy-info-container">
-                    <p className="toy-detail-line">
-                        <span className='p-label'>Name:</span>
-                        <span>{toy.name}</span>
-                    </p>
-                    <p className="toy-detail-line">
-                        <span className='p-label'>Price:</span>
-                        <span>{toy.price}EUR</span>
-                    </p>
-                    <p className="toy-detail-line">
-                        <span className='p-label'>Labels: </span>
-                        <span>{[...toy.labels]}</span>
-                    </p>
-                    <p className="toy-detail-line">
-                        <span className='p-label'>Stock Status: </span>
-                        <span>{toy.status? 'In Stock' : 'Soldout'}</span>
-                    </p>
-                    <p className="toy-detail-line">
-                        <span className='p-label'>Creation Date: </span>
-                        <span>{utilService.getFormattedDate(toy.createdAt)}</span>
-                    </p>
-                </article>
-                <Link className='button-like' to='/toy'>Back</Link>
-            </section>
+                    <img src={toy.imageUrl} alt={`${toy.name}'s image`} />
+                    <article className="toy-info-container">
+                        <p className="toy-detail-line">
+                            <span className='p-label'>Name:</span>
+                            <span>{toy.name}</span>
+                        </p>
+                        <p className="toy-detail-line">
+                            <span className='p-label'>Price:</span>
+                            <span>{toy.price}EUR</span>
+                        </p>
+                        <p className="toy-detail-line">
+                            <span className='p-label'>Labels: </span>
+                            <span>{[...toy.labels]}</span>
+                        </p>
+                        <p className="toy-detail-line">
+                            <span className='p-label'>Stock Status: </span>
+                            <span>{toy.status? 'In Stock' : 'Soldout'}</span>
+                        </p>
+                        <p className="toy-detail-line">
+                            <span className='p-label'>Creation Date: </span>
+                            <span>{utilService.getFormattedDate(toy.createdAt)}</span>
+                        </p>
+                    </article>
+                    <Link className='button-like' to='/toy'>Back</Link>
+                </section>
         </div>
         
     )

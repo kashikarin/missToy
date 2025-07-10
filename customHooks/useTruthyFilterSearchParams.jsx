@@ -9,7 +9,7 @@ export function useTruthyFilterSearchParams() {
     const [searchParams, setSearchParams] = useSearchParams()
     //on mounting - get the query params object and set the initial queryOptions object accordingly
     useEffect(() => {
-        setQueryOptions(toyService.getFilterFromSearchParams(searchParams))
+        setQueryOptions(toyService.getQueryOptionsFromSearchParams(searchParams))
     }, [])
     //update existing queryOptions (upgraded setSearchParams method, to set in the url with only truthy params values)
     function setSearchParamsFromTruthyFilter(queryOptions) {

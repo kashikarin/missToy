@@ -33,3 +33,13 @@
   --gray2: rgb(122, 115, 115);
   --gray3: rgb(240, 240, 240);
 }
+
+$layout-padding: 20px;
+
+$narrow-breakpoint: 600px;
+$normal-breakpoint: 960px;
+$wide-breakpoint: 1280px;
+
+$narrow-padded: $narrow-breakpoint + 2 * $layout-padding;
+$normal-padded: $normal-breakpoint + 2 * $layout-padding;
+$wide-padded: $wide-breakpoint + 2 * $layout-padding;

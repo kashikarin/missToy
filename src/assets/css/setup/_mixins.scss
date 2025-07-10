@@ -1,0 +1,23 @@
+@mixin for-narrow-layout {
+    @media (max-width: $narrow-breakpoint) {
+        @content;
+    }
+};
+
+@mixin for-normal-layout {
+    @media (min-width: $normal-breakpoint) {
+        @content;
+    }
+};
+
+@mixin for-wide-layout {
+    @media (min-width: $wide-breakpoint) {
+        @content;
+    }
+};
+
+@mixin gtc($size) {
+    grid-template-columns: minmax($layout-padding, 1fr) 
+                           minmax(auto, $size) 
+                           minmax($layout-padding, 1fr);
+};

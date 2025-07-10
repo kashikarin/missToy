@@ -1,6 +1,5 @@
 .toy-edit-wrapper {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
     background-color: var(--clr1bg);
     margin: 0;
     padding: 50px;
@@ -11,7 +10,7 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    width: 40%;
+    width: 90%;
     padding: 20px;
     background-color: var(--clr2bg);
     border-radius: 20px;
@@ -30,33 +29,60 @@
         color: var(--clr3);
         font-size: 2em;
     }
+
+    .save-toy-btn {
+        width: 120px;
+        height: 30px;
+        border-radius: 15px;
+        background-color: var(--clr2bg-light);
+        color: var(--grey2);
+        @include for-normal-layout {
+            width: 200px;
+
+        }
+    }
+    @include for-wide-layout {
+        width: 60%;
+    }
     
-}
-
-
-.edit-inputs-wrapper {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
+    
+    .edit-inputs-wrapper {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
     
     input {
     color: var(--clr2);
-    min-width: 0;
-    flex: 1 1 100px;
-    max-width: 100%;    
+    width: 120px;    
     background-color: var(--clr3);
     &::placeholder {
         color: var(--clr2);
     }
+    @include for-normal-layout {
+        width: 200px;
+    }
     }
 
     select {
-        flex: 1 1 100px;
-        min-width: 0;
+        width: 120px;    
+        flex-grow: 0;
         max-width: 100%;
         background-color: var(--clr3);
         padding-inline: 10px;
+        
+        @include for-normal-layout {
+            width: 200px;
+        }
+        @include for-wide-layout {
+            width: 200px;
+        }
+
     }
 }
+ 
+}
+
+
+
 

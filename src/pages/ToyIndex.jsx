@@ -3,20 +3,20 @@ import { ToyList } from "../cmps/ToyList";
 import { ToyFilter } from "../cmps/ToyFilter";
 import { useSelector } from "react-redux";
 import { toyService } from "../../services/toy.service";
-import { useEffect, useState, ReactComponent } from "react";
+import { useEffect, useState } from "react";
 import { useTruthyFilterSearchParams } from "../../customHooks/useTruthyFilterSearchParams";
-import { loadToys, setFilterSort, removeToy } from "../../store/actions/toy.actions";
+import { loadToys, setQueryOptions, removeToy } from "../../store/actions/toy.actions";
 
 
 export function ToyIndex(){
 
-  const filterSort = useSelector(state => state.toyModule.filterSort)
+  const queryOptions = useSelector(state => state.toyModule.queryOptions)
   const toys = useSelector(state => state.toyModule.toys)
   const [existingLabels, setExistingLabels] = useState([])
   
   useEffect(()=>{
-    (async function getExistingToyLabels(filterSort){
-      const labels = await toyService.getExistingLabels(filterSort)
+    (async function getExistingToyLabels(queryOptions){
+      const labels = await toyService.getExistingLabels(queryOptions)
       setExistingLabels(labels)
     })()
   }, [toys])  
@@ -25,23 +25,22 @@ export function ToyIndex(){
 
   useEffect(()=>{
     onUpdateFilter()
-  }, [filterSort])
+  }, [queryOptions])
 
-  function onSetFilterSort(filterSortObj) {
-    console.log('onsetfilter - index (debounced) runs');
-    setFilterSort(filterSortObj)
+  function onSetQueryOptions(queryOptionsObj) {
+    setQueryOptions(queryOptionsObj)
   }
 
   async function onUpdateFilter(){
       await loadToys()
-      setSearchParamsFromTruthyFilter(filterSort)
+      setSearchParamsFromTruthyFilter(queryOptions)
     }
   async function onRemoveToy(toyId) {
       await removeToy(toyId)
   }
   return(
       <section className="toy-index-container">
-        <ToyFilter filterSort={filterSort} onSetFilterSort={onSetFilterSort} existingLabels={existingLabels}/>
+        <ToyFilter queryOptions={queryOptions} onSetQueryOptions={onSetQueryOptions} existingLabels={existingLabels}/>
         <Link to='/toy/edit'><button>Add Toy</button></Link>
         <ToyList toys={toys} onRemoveToy={onRemoveToy} />
       </section>

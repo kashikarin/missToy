@@ -1,12 +1,12 @@
 import { toyService } from "../../services/toy.service";
-import { ADD_TOY, REMOVE_TOY, SET_FILTERSORT, SET_TOYS, UPDATE_TOY } from "../reducers/toy.reducer";
+import { ADD_TOY, REMOVE_TOY, SET_QUERYOPTIONS, SET_TOYS, UPDATE_TOY } from "../reducers/toy.reducer";
 import { store } from "../store";
 
 
 export async function loadToys(){
-    const filterSort = store.getState().toyModule.filterSort
+    const queryOptions = store.getState().toyModule.queryOptions
     try {
-        const toys = await toyService.query(filterSort)
+        const toys = await toyService.query(queryOptions)
         store.dispatch({type: SET_TOYS, toys})
     } catch(err){
         console.error('toy actions => failed to load toys', err)
@@ -24,8 +24,8 @@ export async function removeToy(toyId) {
     }
 }
 
-export function setFilterSort(filterSort) {
-    store.dispatch({ type: SET_FILTERSORT, filterSort })
+export function setQueryOptions(queryOptions) {
+    store.dispatch({ type: SET_QUERYOPTIONS, queryOptions })
 }
 
 export async function saveToy(toyToSave) {

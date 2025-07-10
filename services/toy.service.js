@@ -12,38 +12,38 @@ export const toyService = {
     remove,
     getEmptyToy,
     // getRandomToy,
-    getDefaultFilter,
+    getDefaultQueryOptions,
     getExistingLabels,
-    getFilterFromSearchParams
+    getQueryOptionsFromSearchParams
 }
 
-function query(filterSort = {}) {   
+function query(queryOptions = {}) {   
     return storageService.query(STORAGE_KEY)
         .then(toys => {
-            let multiplier = filterSort.sortOrder 
-            if (filterSort.sortOrder === "") multiplier = 1
-            if (filterSort.name) {
-                const regExp = new RegExp(filterSort.name, 'i')
+            let multiplier = queryOptions.sortOrder 
+            if (queryOptions.sortOrder === "") multiplier = 1
+            if (queryOptions.name) {
+                const regExp = new RegExp(queryOptions.name, 'i')
                 toys = toys.filter(toy => regExp.test(toy.name))
             }
 
-            if (Array.isArray(filterSort.labels) && filterSort.labels.length) {
-                toys = toys.filter(toy => filterSort.labels.some(filteredLabel => toy.labels.includes(filteredLabel)))
+            if (Array.isArray(queryOptions.labels) && queryOptions.labels.length) {
+                toys = toys.filter(toy => queryOptions.labels.some(filteredLabel => toy.labels.includes(filteredLabel)))
             }
 
-            if (filterSort.status !== 'all') {
+            if (queryOptions.status !== 'all') {
                 toys = toys.filter(toy => (toy.status ? toy.status : !toy.status))
             }
 
-            if (filterSort.sort === 'name') {
+            if (queryOptions.sort === 'name') {
                 toys = toys.sort((a, b) => (multiplier === 1)? a.name.localeCompare(b.name) : b.name.localeCompare(a.name))
             }
 
-            if (filterSort.sort === 'price') {
+            if (queryOptions.sort === 'price') {
                 toys = toys.sort((a, b) =>  (a.price - b.price) * multiplier)
             }
 
-            if (filterSort.sort === 'createdAt') {
+            if (queryOptions.sort === 'createdAt') {
                 toys = toys.sort((a, b) =>  (b.createdAt - a.createdAt) * multiplier)
             }
             return toys
@@ -75,19 +75,12 @@ function getEmptyToy(name = '', labels = []) {
     return { name, labels, status: true }
 }
 
-// function getRandomToy() {
-//     return {
-//         name: 'Susita-' + (Date.now() % 1000),
-//         Labels: getRandomIntInclusive(1000, 9000),
-//     }
-// }
-
-function getDefaultFilter() {
+function getDefaultQueryOptions() {
     return { name: '', status: '', labels: [], sort: '', sortOrder: 1 }
 }
 
-async function getExistingLabels(filterSort){
-    const toys = await query(filterSort)
+async function getExistingLabels(queryOptions){
+    const toys = await query(queryOptions)
     if (!toys || !toys.length) return []
     let labelsMap = {}
     for (let i=0; i<toys.length; i++) {
@@ -98,14 +91,14 @@ async function getExistingLabels(filterSort){
     return Object.keys(labelsMap)  
 }
 
-function getFilterFromSearchParams(searchParams) {
-    const defaultFilter = getDefaultFilter()
-    const filterSort = {}
-    for (const field in defaultFilter) {
-        filterSort[field] = searchParams.get(field) || ''
-        if (field === sortOrder && searchParams.get(field) === "") filterSort[field] = 1
+function getQueryOptionsFromSearchParams(searchParams) {
+    const defaultQueryOptions = getDefaultQueryOptions()
+    const queryOptions = {}
+    for (const field in defaultQueryOptions) {
+        queryOptions[field] = searchParams.get(field) || ''
+        if (field === sortOrder && searchParams.get(field) === "") queryOptions[field] = 1
     }
-    return filterSort
+    return queryOptions
 }
 
 function _createToys() {

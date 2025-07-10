@@ -67,7 +67,7 @@ export function ToyEdit(){
                             <option value={false}>Soldout</option>
                         </select>
                     </div>
-                    <button style={{padding: "0"}}>{isLoading? loader : 'Save'}</button>
+                    <button className='save-toy-btn' style={{padding: "0"}}>{isLoading? loader : 'Save'}</button>
                 </form>
             </section>
         </div>

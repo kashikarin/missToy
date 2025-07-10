@@ -4,11 +4,11 @@ export const SET_TOYS = 'SET_TOYS'
 export const REMOVE_TOY = 'REMOVE_TOY'
 export const ADD_TOY = 'ADD_TOY'
 export const UPDATE_TOY = 'UPDATE_TOY'
-export const SET_FILTERSORT = 'SET_FILTERSORT'
+export const SET_QUERYOPTIONS = 'SET_QUERYOPTIONS'
 
 const initialState = {
     toys: [],
-    filterSort: toyService.getDefaultFilter()
+    queryOptions: toyService.getDefaultQueryOptions()
 }
 
 export function toyReducer(state = initialState, cmd){
@@ -26,9 +26,9 @@ export function toyReducer(state = initialState, cmd){
         case UPDATE_TOY:
             return {...state, 
                     toys: state.toys.map(toy => toy._id === cmd.toy._id? cmd.toy : toy)}
-        case SET_FILTERSORT:
+        case SET_QUERYOPTIONS:
             return {...state,
-                    filterSort: {...state.filterSort, ...cmd.filterSort}}
+                    queryOptions: {...state.queryOptions, ...cmd.queryOptions}}
 
         default: return state
     }

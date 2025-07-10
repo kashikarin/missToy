@@ -6,7 +6,7 @@ export function AppHeader(){
 
 
     return (
-        <section className="app-header-container">
+        <section className="app-header-container full">
             <Link className='misstoys-logo'to='/'><h1 >missToys</h1></Link>
             <div className="nav-container">
                 <nav>

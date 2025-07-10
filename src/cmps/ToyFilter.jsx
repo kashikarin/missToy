@@ -6,31 +6,31 @@ import Select from 'react-select'
 import { useEffectUpdate } from "../../customHooks/useEffectUpdate"
 
 
-export function ToyFilter({filterSort, onSetFilterSort, existingLabels}){
-    const [filterSortToEdit, setFilterSortToEdit] = useState(filterSort)
+export function ToyFilter({queryOptions, onSetQueryOptions, existingLabels}){
+    const [queryOptionsToEdit, setQueryOptionsToEdit] = useState(queryOptions)
     const [selectedOptions, setSelectedOptions] = useState([])
-    const debouncedOnSetFilterRef = useRef(utilService.debounce(onSetFilterSort)).current
+    const debouncedOnSetFilterRef = useRef(utilService.debounce(onSetQueryOptions)).current
     
     //update the labels' field in the filter
     useEffect(()=>{
         let labels = []
         let selectedLabels = selectedOptions.map(selectedOption => labels.push(selectedOption.value))
         if (isSelectedLabelsUpdated(selectedLabels)) return
-        setFilterSortToEdit(prevFilter => ({...prevFilter, labels}))
+        setQueryOptionsToEdit(prevQueryOptions => ({...prevQueryOptions, labels}))
     }, [selectedOptions])
     
     //have labels changed versus the filter
     function isSelectedLabelsUpdated(newSeletedOptions) {
-        if (newSeletedOptions?.length !== filterSortToEdit.labels.length) return false
-        let ans = newSeletedOptions.every(option => filterSortToEdit.labels.includes(option))
+        if (newSeletedOptions?.length !== queryOptionsToEdit.labels.length) return false
+        let ans = newSeletedOptions.every(option => queryOptionsToEdit.labels.includes(option))
         return ans
     } 
 
     useEffectUpdate(()=>{
         console.log('useeffectupdate runs');
         
-        debouncedOnSetFilterRef(filterSortToEdit)       
-    }, [filterSortToEdit])
+        debouncedOnSetFilterRef(queryOptionsToEdit)       
+    }, [queryOptionsToEdit])
 
     function handleChange({target}) {
         const field = target.name
@@ -49,7 +49,7 @@ export function ToyFilter({filterSort, onSetFilterSort, existingLabels}){
             default: break
         }
 
-        setFilterSortToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
+        setQueryOptionsToEdit(prevQueryOptions => ({ ...prevQueryOptions, [field]: value }))
     }
 
     function getMultipleSelectOptions(optionsArr) {
@@ -57,12 +57,12 @@ export function ToyFilter({filterSort, onSetFilterSort, existingLabels}){
     }
 
     function onClearFilter(){
-        setFilterSortToEdit(toyService.getDefaultFilter())
+        setQueryOptionsToEdit(toyService.getDefaultFilter())
     }
 
-    const {name} = filterSortToEdit
+    const {name} = queryOptionsToEdit
     return(
-        <section className="toy-filter-container">
+        <section className="toy-filter-container full">
             <form autoComplete="off">
                 <input type="text" name='name' placeholder='Toy Name' value={name} onChange={handleChange}/>
                 <Select styles={{control: (base, state) => ({
@@ -131,7 +131,7 @@ export function ToyFilter({filterSort, onSetFilterSort, existingLabels}){
                 <button onClick={onClearFilter}>Clear</button>
             </form>
             <div className="filter-sort-wrapper">
-                <ToySort onSetFilterSort={onSetFilterSort}/>
+                <ToySort onSetQueryOptions={onSetQueryOptions}/>
             </div>
         </section>
     )

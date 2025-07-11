@@ -37,7 +37,7 @@ export function ToyIndex(){
       <section className="toy-index-container">
         <ToyFilter queryOptions={queryOptions} onSetQueryOptions={onSetQueryOptions} />
         <Link to='/toy/edit'><button>Add Toy</button></Link>
-        {toys.length === 0? <span style={{fontSize: '20px', marginBlockStart: '15px'}}>'No toys to show'</span> : <ToyList toys={toys} onRemoveToy={onRemoveToy} />}
+        {toys.length === 0? <span style={{fontSize: '20px', marginBlockStart: '15px'}}>No toys to show</span> : <ToyList toys={toys} onRemoveToy={onRemoveToy} />}
       </section>
       
     )

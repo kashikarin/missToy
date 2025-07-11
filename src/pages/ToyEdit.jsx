@@ -62,7 +62,7 @@ export function ToyEdit(){
                     <div className="edit-inputs-wrapper">
                         <input type="text" name='name' autoComplete='off' value={name} placeholder='Toy Name' onChange={handleChange}/>
                         <input type="number" name='price' value={price} placeholder='Toy Price' onChange={handleChange}/>
-                        <select name="status" onChange={handleChange} >
+                        <select name="status" value={toyToEdit.status} onChange={handleChange} >
                             <option value={true} defaultChecked>In Stock</option>
                             <option value={false}>Soldout</option>
                         </select>

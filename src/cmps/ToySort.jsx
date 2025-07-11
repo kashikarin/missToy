@@ -4,6 +4,7 @@ import { useEffectUpdate } from "../../customHooks/useEffectUpdate"
 export function ToySort({onSetQueryOptions}){
     
     const [sort, setSort] = useState({sort: '', sortOrder: ''})
+    console.log(sort.sort);
     
     useEffectUpdate(()=>{
         onSetQueryOptions(sort)
@@ -21,7 +22,7 @@ export function ToySort({onSetQueryOptions}){
     return(
         <div className="toysort-wrapper">
             <div className="toysort-select-wrapper">
-                <select name="sort" id="sort" onChange={handleChange}>
+                <select name="sort" id="sort" value={sort.sort} onChange={handleChange}>
                     <option value="">Sort By</option>
                     <option value="name">Name</option>
                     <option value="price">Price</option>
@@ -30,7 +31,7 @@ export function ToySort({onSetQueryOptions}){
                 <span className="arrow"><i className="fa fa-chevron-down"></i></span>
             </div>
             <div className="sort-order-container">
-                <input type='checkbox' id='sortOrder' value={-1} name='sortOrder' onChange={handleChange}/>
+                <input type='checkbox' id='sortOrder' checked={sort.sortOrder === -1} value={sort.sortOrder} name='sortOrder' onChange={handleChange}/>
                 <label htmlFor="sortOrder">Desc</label>
             </div>
         </div>

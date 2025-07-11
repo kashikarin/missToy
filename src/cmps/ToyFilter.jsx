@@ -45,18 +45,10 @@ export function ToyFilter({queryOptions, onSetQueryOptions}){
 
     //update the labels' field in the filter
     useEffectUpdate(()=>{
-        let labels = []      
-        let selectedLabels = selectedOptions.map(selectedOption => labels.push(selectedOption.value))
-        if (isSelectedLabelsUpdated(selectedLabels)) return
-        setQueryOptionsToEdit(prevQueryOptions => ({...prevQueryOptions, labels}))
-    }, [selectedOptions])
+        setQueryOptionsToEdit(prevQueryOptions => ({...prevQueryOptions, labels: [...prevQueryOptions.labels, ...selectedOptions]}))
+    }, [selectedOptions.length])
     
     //have labels changed versus the filter
-    function isSelectedLabelsUpdated(newSeletedOptions) {
-        if (newSeletedOptions?.length !== queryOptionsToEdit.labels.length) return false
-        let ans = newSeletedOptions.every(option => queryOptionsToEdit.labels.includes(option))
-        return ans
-    } 
 
     useEffectUpdate(()=>{        
         debouncedOnSetFilterRef(queryOptionsToEdit)       
@@ -90,6 +82,12 @@ export function ToyFilter({queryOptions, onSetQueryOptions}){
         setQueryOptionsToEdit(toyService.getDefaultQueryOptions())
     }
 
+    function pushSelectedOptions(value){
+        console.log(value)
+        if (selectedOptions.includes(value)) return
+        setSelectedOptions(prevOptions => [...prevOptions, value])
+    }
+
     const {name} = queryOptionsToEdit
     return(
         <section className="toy-filter-container full">                
@@ -97,7 +95,7 @@ export function ToyFilter({queryOptions, onSetQueryOptions}){
             {<div ref={formWrapperDivRef} className="form-wrapper">
                 <form autoComplete="off">
                     <input type="text" name='name' placeholder='Toy Name' value={name} onChange={handleChange}/>
-                    <Select styles={{control: (base) => ({
+                    <Select isMulti styles={{control: (base) => ({
                             ...base, 
                             borderRadius: '15px', 
                             height: '30px', 
@@ -149,15 +147,15 @@ export function ToyFilter({queryOptions, onSetQueryOptions}){
                             color: 'var(--clr2bg)'
                         })
                         }}
-                        isMulti 
+                         
                         components={{ IndicatorSeparator: () => null }}
-                        options={getMultipleSelectOptions(toyService.labels)} value={selectedOptions} placeholder='Type a label' name="labels" onChange={setSelectedOptions} 
+                        options={getMultipleSelectOptions(toyService.labels)} value={queryOptionsToEdit.labels} placeholder='Type a label' name="labels" onChange={(ev) => pushSelectedOptions(ev[0].value)} 
                     >
                     </Select>
                     <div className="toyfilter-select-wrapper">
-                        <select name="status" id="status" onChange={handleChange}>
-                            <option defaultChecked>All</option>
-                            <option value={true}>In Stock</option>
+                        <select name="status" id="status" value={queryOptionsToEdit.status} onChange={handleChange}>
+                            <option value='' >All</option>
+                            <option value={true} >In Stock</option>
                             <option value={false}>Soldout</option>
                         </select>
                         <span className="arrow"><i className="fa fa-chevron-down"></i></span>

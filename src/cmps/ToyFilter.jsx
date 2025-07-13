@@ -181,7 +181,7 @@ export function ToyFilter({queryOptions, onSetQueryOptions}){
                     </div>
                 </form>
                 <div className="filter-sort-wrapper">
-                    <ToySort onSetQueryOptions={onSetQueryOptions}/>
+                    <ToySort queryOptions={queryOptionsToEdit} onSetQueryOptions={onSetQueryOptions}/>
                 </div>                     
                 <button className='clear-filter-btn' onClick={onClearFilter}>Clear</button>
             </div>}

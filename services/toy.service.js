@@ -38,15 +38,15 @@ function query(queryOptions = {}) {
                 toys = toys.filter(toy => (toy.status ? toy.status : !toy.status))
             }
 
-            if (queryOptions.sort === 'name') {
+            if (queryOptions.sortField === 'name') {
                 toys = toys.sort((a, b) => (multiplier === 1)? a.name.localeCompare(b.name) : b.name.localeCompare(a.name))
             }
 
-            if (queryOptions.sort === 'price') {
+            if (queryOptions.sortField === 'price') {
                 toys = toys.sort((a, b) =>  (a.price - b.price) * multiplier)
             }
 
-            if (queryOptions.sort === 'createdAt') {
+            if (queryOptions.sortField === 'createdAt') {
                 toys = toys.sort((a, b) =>  (b.createdAt - a.createdAt) * multiplier)
             }
             return toys
@@ -79,7 +79,7 @@ function getEmptyToy(name = '', labels = []) {
 }
 
 function getDefaultQueryOptions() {
-    return { name: '', status: '', labels: [], sort: '', sortOrder: "" }
+    return { name: '', status: '', labels: [], sortField: '', sortOrder: "" }
 }
 
 // async function getExistingLabels(queryOptions){

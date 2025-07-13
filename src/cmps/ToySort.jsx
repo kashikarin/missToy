@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useEffectUpdate } from "../../customHooks/useEffectUpdate"
 
-export function ToySort({onSetQueryOptions}){
+export function ToySort({queryOptions, onSetQueryOptions}){
     
-    const [sort, setSort] = useState({sort: '', sortOrder: ''})
-    console.log(sort.sort);
+    const [sort, setSort] = useState({sortField: queryOptions.sortField, sortOrder: queryOptions.sortOrder})
     
     useEffectUpdate(()=>{
         onSetQueryOptions(sort)
@@ -22,7 +21,7 @@ export function ToySort({onSetQueryOptions}){
     return(
         <div className="toysort-wrapper">
             <div className="toysort-select-wrapper">
-                <select name="sort" id="sort" value={sort.sort} onChange={handleChange}>
+                <select name="sortField" value={sort.sortField} onChange={handleChange}>
                     <option value="">Sort By</option>
                     <option value="name">Name</option>
                     <option value="price">Price</option>

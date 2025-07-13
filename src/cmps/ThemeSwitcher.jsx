@@ -1,15 +1,17 @@
-import { useState } from "react"
+import { SET_COLOR_THEME } from "../../store/reducers/system.reducer"
+import { useSelector, useDispatch } from "react-redux"
 
 export function ThemeSwitcher(){
-    const [colorTheme, setColorTheme] = useState('light')
     const body = document.body
+    const colorTheme = useSelector(state => state.systemModule.colorTheme)
+    const dispatch = useDispatch()
 
     function switchTheme(){
         if (colorTheme === 'light') {
-           setColorTheme('dark')
+           dispatch({type: SET_COLOR_THEME, colorTheme: 'dark'})
            body.classList.add('dark')
         } else {
-            setColorTheme('light')
+            dispatch({type: SET_COLOR_THEME, colorTheme: 'light'})
             body.classList.remove('dark')
         }
     }

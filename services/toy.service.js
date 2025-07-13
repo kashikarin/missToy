@@ -10,7 +10,7 @@ const gToyLabels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 'O
 export const toyService = {
     query,
     getById,
-    gToyLabels,
+    getToyLabels,
     save,
     remove,
     getEmptyToy,
@@ -104,6 +104,9 @@ function getQueryOptionsFromSearchParams(searchParams) {
     return queryOptions
 }
 
+function getToyLabels(){
+    return Promise.resolve(gToyLabels)
+}
 function _createToys() {
     let toys = utilService.loadFromStorage(STORAGE_KEY)
     if (!toys || !toys.length) {

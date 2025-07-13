@@ -80,7 +80,7 @@ export function ToyFilter({queryOptions, onSetQueryOptions}){
         setQueryOptionsToEdit(prevQueryOptions => ({ ...prevQueryOptions, [field]: value }))
     }
     async function getToyLabels(){
-        let labels = await toyService.gToyLabels
+        let labels = await toyService.getToyLabels()
         let labelsArr = labels.map(label => ({label, value: label }))
         setToyLabels(labelsArr)
     }

@@ -31,7 +31,7 @@ function query(queryOptions = {}) {
             }
 
             if (Array.isArray(queryOptions.labels) && queryOptions.labels.length) {
-                toys = toys.filter(toy => queryOptions.labels.some(filteredLabel => toy.labels.includes(filteredLabel)))
+                toys = toys.filter(toy => queryOptions.labels.every(filteredLabel => toy.labels.includes(filteredLabel)))
             }
 
             if (queryOptions.status !== 'all') {

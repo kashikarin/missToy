@@ -5,7 +5,7 @@
     color: var(--clr2);
     padding: 10px;
     position: fixed;
-    top: 15px;
+    top: 40px;
     left: 0;
     z-index: 9;
     @include for-wide-layout {
@@ -100,12 +100,14 @@
             position: unset;
         }
     }
+    .filter-sort-wrapper {
+        padding-bottom: 30px;
+    }
     }
     .filter-menu-button {
         display: inline-block;
         width: 30px;
         height: 30px;
-        margin-block-start: 20px;
         display: flex;
         justify-content: center;
         align-items: center;

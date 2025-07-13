@@ -19,6 +19,7 @@ export function ToyIndex(){
 
   useEffect(()=>{
     onUpdateFilter()
+    setSearchParamsFromTruthyFilter(queryOptions)
   }, [queryOptions])
 
   function onSetQueryOptions(queryOptionsObj) {
@@ -26,18 +27,19 @@ export function ToyIndex(){
   }
 
   async function onUpdateFilter(){
-      await loadToys()
-      await getToyLabels()
-      setSearchParamsFromTruthyFilter(queryOptions)
+      let [ ,labels] = await Promise.all([loadToys(), getToyLabels()])
+      let labelsArr = labels.map(label => ({label, value: label }))
+      setToyLabels(labelsArr)
     }
+
   async function onRemoveToy(toyId) {
       await removeToy(toyId)
   }
 
   async function getToyLabels(){
-    let labels = await toyService.getToyLabels()
-    let labelsArr = labels.map(label => ({label, value: label }))
-    setToyLabels(labelsArr)
+    const labels = await toyService.getToyLabels()
+    return Promise.resolve(labels)
+    
   }
 
   if (isLoading) return <img src={Loader} alt='Loading...' />

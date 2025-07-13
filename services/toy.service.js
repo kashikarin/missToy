@@ -107,6 +107,7 @@ function getQueryOptionsFromSearchParams(searchParams) {
 function getToyLabels(){
     return Promise.resolve(gToyLabels)
 }
+
 function _createToys() {
     let toys = utilService.loadFromStorage(STORAGE_KEY)
     if (!toys || !toys.length) {

@@ -10,7 +10,8 @@ export function ToyFilter({queryOptions, onSetQueryOptions}){
     const [queryOptionsToEdit, setQueryOptionsToEdit] = useState(queryOptions)
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     const [isFilterVisible, setIsFilterVisible] = useState('')
-    const [selectedOptions, setSelectedOptions] = useState([])
+    const [toyLabels, setToyLabels] = useState([])
+    const [selectedLabels, setSelectedLabels] = useState([])
     const debouncedOnSetFilterRef = useRef(utilService.debounce(onSetQueryOptions)).current
     const formWrapperDivRef = useRef()
 
@@ -43,16 +44,21 @@ export function ToyFilter({queryOptions, onSetQueryOptions}){
         }
     }, [isFilterVisible])
 
+
     //update the labels' field in the filter
     useEffectUpdate(()=>{
-        setQueryOptionsToEdit(prevQueryOptions => ({...prevQueryOptions, labels: [...prevQueryOptions.labels, ...selectedOptions]}))
-    }, [selectedOptions.length])
+        setQueryOptionsToEdit(prevQueryOptions => ({...prevQueryOptions, labels: [...prevQueryOptions.labels, ...selectedLabels]}))
+    }, [selectedLabels.length])
     
     //have labels changed versus the filter
 
     useEffectUpdate(()=>{        
         debouncedOnSetFilterRef(queryOptionsToEdit)       
     }, [queryOptionsToEdit])
+
+    useEffect(()=>{
+        getToyLabels()
+    }, [])
 
     function handleChange({target}) {
         const field = target.name
@@ -73,22 +79,36 @@ export function ToyFilter({queryOptions, onSetQueryOptions}){
 
         setQueryOptionsToEdit(prevQueryOptions => ({ ...prevQueryOptions, [field]: value }))
     }
-
-    function getMultipleSelectOptions(optionsArr) {
-        return optionsArr.map(optionItem => ({value: optionItem, label: optionItem}))
+    async function getToyLabels(){
+        let labels = await toyService.gToyLabels
+        let labelsArr = labels.map(label => ({label, value: label }))
+        setToyLabels(labelsArr)
     }
+    // function getMultipleSelectOptions(optionsArr) {
+    //     return optionsArr.map(optionItem => ({value: optionItem, label: optionItem}))
+    // }
 
     function onClearFilter(){
         setQueryOptionsToEdit(toyService.getDefaultQueryOptions())
     }
 
-    function pushSelectedOptions(value){
+    function pushSelectedLabels(value){
         console.log(value)
-        if (selectedOptions.includes(value)) return
-        setSelectedOptions(prevOptions => [...prevOptions, value])
+        for (let i=0; i<value.length; i++) {
+            if (selectedLabels.includes(value[i])) continue
+            setSelectedLabels(prevOptions => [...prevOptions, value[i]])
+        }
+        
+    }
+
+    function addSelectedLabels(selectedOptions) {
+        const selectedValues = selectedOptions.map(option => option.value)
+        setQueryOptionsToEdit(prev => ({...prev, labels: selectedValues}))
     }
 
     const {name} = queryOptionsToEdit
+    const selectedLabelObjects = toyLabels.filter(labelObj =>
+            queryOptionsToEdit.labels.includes(labelObj.value))
     return(
         <section className="toy-filter-container full">                
             {!isFilterVisible && <button className="filter-menu-button" onClick={()=> setIsFilterVisible(true)} ><i className="fas fa-bars"></i></button>}
@@ -147,9 +167,8 @@ export function ToyFilter({queryOptions, onSetQueryOptions}){
                             color: 'var(--clr2bg)'
                         })
                         }}
-                         
                         components={{ IndicatorSeparator: () => null }}
-                        options={getMultipleSelectOptions(toyService.labels)} value={queryOptionsToEdit.labels} placeholder='Type a label' name="labels" onChange={(ev) => pushSelectedOptions(ev[0].value)} 
+                        options={toyLabels} value={selectedLabelObjects} placeholder='Type a label' name="labels" onChange={(selectedOptions) => addSelectedLabels(selectedOptions)} 
                     >
                     </Select>
                     <div className="toyfilter-select-wrapper">

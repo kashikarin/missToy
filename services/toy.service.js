@@ -5,12 +5,12 @@ import { utilService } from './util.service.js'
 const STORAGE_KEY = 'toyDB'
 _createToys()
 
-const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdoor', 'Battery Powered']
+const gToyLabels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdoor', 'Battery Powered']
 
 export const toyService = {
     query,
     getById,
-    labels,
+    gToyLabels,
     save,
     remove,
     getEmptyToy,

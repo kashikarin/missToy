@@ -31,8 +31,8 @@ export function ToySort({queryOptions, onSetQueryOptions}){
             </div>
             <div className="sort-order-container">
                 <label htmlFor="sortOrder">
-                    Desc
                     <input type='checkbox' id='sortOrder' disabled={sort.sortField === ""} checked={sort.sortOrder === -1} value={sort.sortOrder} name='sortOrder' onChange={handleChange}/>
+                    Desc
                 </label>
             </div>
         </div>

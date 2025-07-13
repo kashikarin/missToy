@@ -108,6 +108,7 @@
         width: 30px;
         height: 30px;
         display: flex;
+        margin-block: 10px; 
         justify-content: center;
         align-items: center;
         @include for-wide-layout {

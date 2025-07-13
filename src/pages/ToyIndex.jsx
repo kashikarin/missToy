@@ -13,6 +13,7 @@ export function ToyIndex(){
   const queryOptions = useSelector(state => state.toyModule.queryOptions)
   const toys = useSelector(state => state.toyModule.toys)
   const isLoading = useSelector(state => state.systemModule.isLoading)
+  const [toyLabels, setToyLabels] = useState([])
 
   const setSearchParamsFromTruthyFilter = useTruthyFilterSearchParams()
 
@@ -26,16 +27,24 @@ export function ToyIndex(){
 
   async function onUpdateFilter(){
       await loadToys()
+      await getToyLabels()
       setSearchParamsFromTruthyFilter(queryOptions)
     }
   async function onRemoveToy(toyId) {
       await removeToy(toyId)
   }
+
+  async function getToyLabels(){
+    let labels = await toyService.getToyLabels()
+    let labelsArr = labels.map(label => ({label, value: label }))
+    setToyLabels(labelsArr)
+  }
+
   if (isLoading) return <img src={Loader} alt='Loading...' />
 
   return(
       <section className="toy-index-container">
-        <ToyFilter queryOptions={queryOptions} onSetQueryOptions={onSetQueryOptions} />
+        <ToyFilter queryOptions={queryOptions} toyLabels={toyLabels} onSetQueryOptions={onSetQueryOptions} />
         <Link to='/toy/edit'><button>Add Toy</button></Link>
         {toys.length === 0? <span style={{fontSize: '20px', marginBlockStart: '15px'}}>No toys to show</span> : <ToyList toys={toys} onRemoveToy={onRemoveToy} />}
       </section>

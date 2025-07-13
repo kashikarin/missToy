@@ -6,11 +6,10 @@ import Select from 'react-select'
 import { useEffectUpdate } from "../../customHooks/useEffectUpdate"
 
 
-export function ToyFilter({queryOptions, onSetQueryOptions}){
+export function ToyFilter({queryOptions, toyLabels, onSetQueryOptions}){
     const [queryOptionsToEdit, setQueryOptionsToEdit] = useState(queryOptions)
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     const [isFilterVisible, setIsFilterVisible] = useState('')
-    const [toyLabels, setToyLabels] = useState([])
     const [selectedLabels, setSelectedLabels] = useState([])
     const debouncedOnSetFilterRef = useRef(utilService.debounce(onSetQueryOptions)).current
     const formWrapperDivRef = useRef()
@@ -56,10 +55,6 @@ export function ToyFilter({queryOptions, onSetQueryOptions}){
         debouncedOnSetFilterRef(queryOptionsToEdit)       
     }, [queryOptionsToEdit])
 
-    useEffect(()=>{
-        getToyLabels()
-    }, [])
-
     function handleChange({target}) {
         const field = target.name
         let value = target.value
@@ -79,26 +74,13 @@ export function ToyFilter({queryOptions, onSetQueryOptions}){
 
         setQueryOptionsToEdit(prevQueryOptions => ({ ...prevQueryOptions, [field]: value }))
     }
-    async function getToyLabels(){
-        let labels = await toyService.getToyLabels()
-        let labelsArr = labels.map(label => ({label, value: label }))
-        setToyLabels(labelsArr)
-    }
+
     // function getMultipleSelectOptions(optionsArr) {
     //     return optionsArr.map(optionItem => ({value: optionItem, label: optionItem}))
     // }
 
     function onClearFilter(){
         setQueryOptionsToEdit(toyService.getDefaultQueryOptions())
-    }
-
-    function pushSelectedLabels(value){
-        console.log(value)
-        for (let i=0; i<value.length; i++) {
-            if (selectedLabels.includes(value[i])) continue
-            setSelectedLabels(prevOptions => [...prevOptions, value[i]])
-        }
-        
     }
 
     function addSelectedLabels(selectedOptions) {

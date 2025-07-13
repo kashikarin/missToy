@@ -30,8 +30,10 @@ export function ToySort({queryOptions, onSetQueryOptions}){
                 <span className="arrow"><i className="fa fa-chevron-down"></i></span>
             </div>
             <div className="sort-order-container">
-                <input type='checkbox' id='sortOrder' checked={sort.sortOrder === -1} value={sort.sortOrder} name='sortOrder' onChange={handleChange}/>
-                <label htmlFor="sortOrder">Desc</label>
+                <label htmlFor="sortOrder">
+                    Desc
+                    <input type='checkbox' id='sortOrder' disabled={sort.sortField === ""} checked={sort.sortOrder === -1} value={sort.sortOrder} name='sortOrder' onChange={handleChange}/>
+                </label>
             </div>
         </div>
     )

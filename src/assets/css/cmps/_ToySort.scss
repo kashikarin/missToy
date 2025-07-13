@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: row;
     justify-content: start;
+    margin-block-start: 20px;
     align-items: center;
     gap: 10px;
         @include for-normal-layout {
@@ -26,9 +27,17 @@
 .sort-order-container {
     display: flex;
     align-items: center;
-    margin-inline-end: 20px;
+    // align-self: flex-end;
+    margin-inline-end: 30px;
     gap: 7px;
     label {
         font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        
+        &:has(input:disabled){
+            opacity: 0.4;
+        }
     }
 }

@@ -3,13 +3,13 @@
     border-bottom: 1px solid var(--clr2);
     background-color: var(--clr3);
     color: var(--clr2);
-    padding: 10px;
+    padding-right: 10px;
     position: fixed;
     top: 40px;
     left: 0;
     z-index: 9;
     @include for-wide-layout {
-        top: 70px;
+        top: 50px;
     }
     .form-wrapper {
         display: none;
@@ -74,7 +74,6 @@
                     width: 180px;
                 }
                 .clear-filter-btn {
-                    padding: 5px;
                     background-color: var(--clr3);
                     padding-left: 20px;
                     padding-right: 20px;
@@ -101,7 +100,7 @@
         }
     }
     .filter-sort-wrapper {
-        padding-bottom: 30px;
+        padding-bottom: 20px;
     }
     }
     .filter-menu-button {

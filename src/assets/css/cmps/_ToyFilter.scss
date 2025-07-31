@@ -1,22 +1,21 @@
 .toy-filter-container {   
-    width: 100%;
     border-bottom: 1px solid var(--clr2);
     background-color: var(--clr3);
     color: var(--clr2);
-    padding-right: 10px;
+    padding-inline-end: 10px;
+    width: 100vw;
     position: fixed;
-    top: 40px;
+    top: var(--header-height);
     left: 0;
     z-index: 9;
-    @include for-wide-layout {
-        top: 50px;
-    }
+    height: auto;
+    
     .form-wrapper {
         display: none;
         position: relative;
         flex-direction: column;
         gap: 10px;
-        padding-block-start: 15px;
+        // padding-block-start: 15px;
 
         @include for-narrow-layout {
             display: none;

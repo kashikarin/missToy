@@ -1,12 +1,27 @@
 import { NavLink, Link } from "react-router"
 import { ThemeSwitcher } from "./ThemeSwitcher"
+import { useRef, useEffect } from "react"
 
 export function AppHeader(){
-
-
+    const headerRef = useRef()
+    
+    useEffect(() => {
+        const headerEl = headerRef.current
+        if (!headerEl) return
+        const height = headerEl.offsetHeight
+        document.documentElement.style.setProperty('--header-height', `${height}px`)
+        
+        const handleResize = () => {
+            if (headerEl) {
+                document.documentElement.style.setProperty('--header-height', `${headerEl.offsetHeight}px`)
+            }
+        }
+        window.addEventListener('resize', handleResize)
+        return () => window.removeEventListener('resize', handleResize)
+      }, [headerRef])
 
     return (
-        <section className="app-header-container full">
+        <header className="app-header-container full" ref={headerRef}>
             <Link className='misstoys-logo'to='/'><h1 >missToys</h1></Link>
             <div className="nav-container">
                 <nav>
@@ -17,7 +32,8 @@ export function AppHeader(){
                     <ThemeSwitcher />   
                 </div>
             </div> 
-        </section>
+
+        </header>
 
     )
 }

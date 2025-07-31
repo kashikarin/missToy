@@ -13,6 +13,24 @@ export function ToyFilter({queryOptions, toyLabels, onSetQueryOptions}){
     const [selectedLabels, setSelectedLabels] = useState([])
     const debouncedOnSetFilterRef = useRef(utilService.debounce(onSetQueryOptions)).current
     const formWrapperDivRef = useRef()
+    const filterRef = useRef()
+
+    
+    useEffect(() => {
+        const filterEl = filterRef.current
+        if (!filterEl) return
+        const height = filterEl.offsetHeight
+        document.documentElement.style.setProperty('--filter-height', `${height}px`)
+        
+        const handleResize = () => {
+            if (filterRef.current) {
+                document.documentElement.style.setProperty('--filter-height', `${filterRef.current.offsetHeight}px`)
+            }
+        }
+        window.addEventListener('resize', handleResize)
+        return () => window.removeEventListener('resize', handleResize)
+      }, [filterRef])
+
 
     //control filter menu visibility upon change in screen width 
     useEffect(() => {
@@ -92,7 +110,7 @@ export function ToyFilter({queryOptions, toyLabels, onSetQueryOptions}){
     const selectedLabelObjects = toyLabels.filter(labelObj =>
             queryOptionsToEdit.labels.includes(labelObj.value))
     return(
-        <section className="toy-filter-container full">                
+        <section className="toy-filter-container full" ref={filterRef}>                
             {!isFilterVisible && <button className="filter-menu-button" onClick={()=> setIsFilterVisible(true)} ><i className="fas fa-bars"></i></button>}
             {<div ref={formWrapperDivRef} className="form-wrapper">
                 <form autoComplete="off">

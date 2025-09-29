@@ -149,7 +149,7 @@ function _createToy(name, labels) {
     toy._id = utilService.makeId()
     toy.createdAt = toy.updatedAt = Date.now() - utilService.getRandomIntInclusive(0, 1000 * 60 * 60 * 24)
     toy.price = utilService.getRandomIntInclusive(50, 250)
-    toy.imageUrl = `/toy-images/${name.replaceAll(" ", "").replace(/[0-9]/g, '')}.png`
+    toy.imageUrl = `${import.meta.env.BASE_URL}toy-images/${name.replaceAll(" ", "").replace(/[0-9]/g, '')}.png`
 
     return toy
 }

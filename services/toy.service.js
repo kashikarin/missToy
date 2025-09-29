@@ -151,6 +151,7 @@ function _createToy(name, labels) {
     toy.price = utilService.getRandomIntInclusive(50, 250)
     toy.imageUrl = `${import.meta.env.BASE_URL}toy-images/${name.replaceAll(" ", "").replace(/[0-9]/g, '')}.png`
 
+
     return toy
 }
 

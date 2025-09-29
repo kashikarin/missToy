@@ -43,7 +43,8 @@ export function ToyIndex(){
   }
 
   if (isLoading) return <img src={Loader} alt='Loading...' />
-
+console.log('BASE_URL:', import.meta.env.BASE_URL)
+console.log('DEV mode?', import.meta.env.DEV)
   return(
       <section className="toy-index-container">
         <ToyFilter queryOptions={queryOptions} toyLabels={toyLabels} onSetQueryOptions={onSetQueryOptions} />

@@ -8,7 +8,7 @@ export function ToyPreview({ toy }) {
                 <h5 style={{color: toy.status ? 'var(--clr4bg)' : 'var(--clr2bg)'}}>{toy.status ? 'In stock' : 'Sold out'}</h5>
             </div>
             <div className="toy-preview-labels-container">
-                {toy.labels?.map(label => <span key={label} className='label-toy-preview'>{label}</span>)}
+                {toy.labels?.map(label => <span key={label} className='label-toy-preview'>{label.charAt(0).toUpperCase() + label.slice(1)}</span>)}
             </div>
         </article>
     )

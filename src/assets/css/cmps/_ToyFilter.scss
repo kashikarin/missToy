@@ -309,7 +309,7 @@
                         border-bottom: 1px solid rgba(0,0,0,0.1);
 
                         &:last-child {
-                        border-bottom: none;
+                            border-bottom: none;
                         }
                     }
 
@@ -319,6 +319,7 @@
 
                     input {
                         color: var(--clr2);
+                        font-size: 1rem;
                     }
 
                     .toy-filter-mobile-labels-selection {
@@ -337,71 +338,85 @@
                                 width: max-content;
                                 padding: 4px;
                                 cursor: pointer;
-                                
-                                &:hover {
-                                    background-color: var(--clr3);
-                                }
+                                background-color: var(--clr1bg);
 
                                 &.selected {
                                     border: 1px solid var(--clr2);
+                                    background-color: var(--clr3);
                                 }
-
                             }
                             
                         }
                     }
-                    
-                    .toy-filter-mobile-status-toggle-switch {
+                    .toy-filter-mobile-status-selection {
                         display: flex;
-                        align-items: center;
+                        // align-items: center;
                         gap: 0.75rem;
                         padding: 0.75rem 0;
                         width: 100%;
                         border-bottom: 1px solid rgba(0,0,0,0.1);
-                        color: var(--clr2);
-                        font-size: 1rem;
-                        cursor: pointer;
                         
-                        input {
-                            opacity: 0;
-                            width: 0;
-                            height: 0;
+
+                        input[type='checkbox'] {
                             position: absolute;
+                            left: -9999px;
                         }
 
-                        .switch {
-                            position: relative;
-                            width: 40px;
-                            height: 22px;
-                            background-color: var(--clr2);
-                            border-radius: 20px;
-                            transition: background-color 0.3s ease;
-                            flex-shrink: 0;
+                        .toy-filter-mobile-status-toggle-switch {
+                            display: flex;
+                            align-items: center;
+                            gap: 0.75rem;
                             cursor: pointer;
+                            color: var(--clr2);
 
-                            &::before {
-                                content: "";
-                                position: absolute;
-                                top: 2px;
-                                left: 2px;
-                                width: 18px;
-                                height: 18px;
-                                background-color: white;
-                                border-radius: 50%;
-                                transition: transform 0.3s ease;
+                            .switch {
+                                position: relative;
+                                width: 40px;
+                                height: 22px;
+                                background-color: #d4d4d4;;
+                                border-radius: 20px;
+                                transition: background-color 0.3s ease;
+                                flex-shrink: 0;
+                                
+                                &::before {
+                                    content: "";
+                                    position: absolute;
+                                    top: 2px;
+                                    left: 2px;
+                                    width: 18px;
+                                    height: 18px;
+                                    background-color: white;
+                                    border-radius: 50%;
+                                    transition: transform 0.3s ease;
+                                }
                             }
                         }
-                    }  
+                        input[type='checkbox']:checked + label.toy-filter-mobile-status-toggle-switch .switch {
+                            background-color: var(--clr2);
+                        }
+
+                        input[type='checkbox']:checked + label.toy-filter-mobile-status-toggle-switch .switch::before {
+                            transform: translateX(18px);
+                        }
+                    }
+                    
                     
                     .toy-filter-mobile-buttons-container {
                         & > button {
                             padding: 5px 10px;
                             font-size: 1rem;
+
+                            &:first-child {
+                                font-weight: 600;
+                            }
+
+
                         }
                         display: flex;
                         width: 100%;
                         justify-content: space-between;
                         padding-block-start: 40px;
+
                     }
                 }
                 
@@ -416,15 +431,16 @@
     
     
     .hide-filter-btn {
-        width: min-content;
+        width: max-content;
         position: absolute;
         bottom: 10px;
         right: 50%;
         left: 50%;
         font-size: 12px;
-        padding-top: 5px;
-        padding-bottom: 5px;
+        padding-top: 0px;
+        padding-bottom: 0px;
         background-color: var(--clr2bg-light);
+        
         @include for-wide-layout {
             display: none;  
         }

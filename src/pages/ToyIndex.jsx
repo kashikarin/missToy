@@ -22,7 +22,7 @@ export function ToyIndex(){
     loadToys(queryOptions)
   }, [queryOptions])
 
-  function onSetQueryOptions(queryOptionsObj) {
+  function onSetQueryOptions(queryOptionsObj) {   
     setQueryOptions(queryOptionsObj)
   }
 

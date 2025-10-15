@@ -31,12 +31,19 @@ export function ToyFilterMobileForm({
     }
 
     function toggleLabel(label) {
+        label = label.toLowerCase()
         setLocalQueryOptions(prev => {
         const labels = prev.labels.includes(label)?
              prev.labels.filter(l => l !== label)
             : [...prev.labels, label]        
             return { ...prev, labels }
         })
+    }
+
+    function handleSubmit(ev) {
+        ev.preventDefault()
+        onSetQueryOptions(localQueryOptions)
+        setIsFilterMenuClicked(false)
     }
     
     if (!queryOptions || !toyLabels) return null
@@ -53,7 +60,7 @@ export function ToyFilterMobileForm({
                     (
                         <div className="toy-filter-mobile-content">
                             <h2>Your perfect toy starts here</h2>
-                            <form autoComplete="off" onSubmit={(ev) => ev.preventDefault()}>
+                            <form autoComplete="off" onSubmit={handleSubmit}>
                                 <label htmlFor="mobile-name-input" className='toy-filter-mobile-name-input'>
                                     Search by name:
                                     <input 
@@ -73,35 +80,43 @@ export function ToyFilterMobileForm({
                                                 key={l}
                                                 className={localQueryOptions.labels.includes(l.toLowerCase())? "selected" : ''}
                                                 onClick={()=>toggleLabel(l)}
-                                            >{l}
+                                            >{l.charAt(0).toUpperCase() + l.slice(1)}
                                             </li>
                                         )}
                                     </ul>
                                 </div>
-                                <label className="toy-filter-mobile-status-toggle-switch">
+                                <div className="toy-filter-mobile-status-selection">
                                     <input
+                                        id="status-toggle"
                                         type="checkbox"
                                         name='status'
                                         checked={localQueryOptions.status}
                                         onChange={handleChange}
                                     />
-                                    <span className="switch" />
-                                    <span className="label">In stock toys only</span>
-                                </label>
+                                    <label className="toy-filter-mobile-status-toggle-switch" htmlFor="status-toggle">
+                                        <span className="switch" />
+                                        <span className="label">In stock toys only</span>
+                                    </label>
+                                </div>
+                                
+                                
                                 <div className="toy-filter-mobile-buttons-container">
-                                    <button className='close-filter-btn' onClick={()=>setIsFilterMenuClicked(false)}>Close</button>
-                                    <button className="submit-filter-btn" onClick={() => {
-                                        onSetQueryOptions(localQueryOptions)
-                                        setIsFilterMenuClicked(false)
-                                    }}>
+                                    
+                                    <button type='submit' className="submit-filter-btn">
                                         Submit
                                     </button>
                                     <button className="clear-filter-btn" onClick={()=> setLocalQueryOptions(toyService.getDefaultQueryOptions())}>
-                                        Clear filter
+                                        Clear
                                     </button>
                                     
                                 </div>
                             </form>
+                            <button 
+                                className='hide-filter-btn' 
+                                onClick={()=>setIsFilterMenuClicked(false)}
+                            >
+                                <span className="arrow"><i className="fa fa-chevron-up"></i></span>
+                            </button>
                         </div>
                     )
                 }

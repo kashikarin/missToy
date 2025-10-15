@@ -112,7 +112,7 @@ function _createToys() {
     let toys = loadFromStorage(STORAGE_KEY)
     if (!toys || !toys.length) {
         toys = []
-        const labels = ['On Wheels', 'Box Game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdoor', 'Battery Powered']
+        const labels = ['on wheels', 'box game', 'art', 'baby', 'doll', 'puzzle', 'outdoor', 'battery powered']
         const names = ['Talking Doll', 'Remote Control Car', 'Scooter', 'Play Doh', 'Puzzle', 'Cards Game']
         for (let i = 0; i < 20; i++) {
             const toyName = names[getRandomIntInclusive(0, names.length - 1)]

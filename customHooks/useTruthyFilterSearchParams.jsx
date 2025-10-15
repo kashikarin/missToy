@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useSearchParams } from "react-router-dom"
 import { toyService } from "../services/toy.service"
-import { utilService } from "../services/util.service"
+import { getTruthyValues } from "../services/util.service"
 import { setQueryOptions } from "../store/actions/toy.actions"
 
 export function useTruthyFilterSearchParams() { 
@@ -13,7 +13,7 @@ export function useTruthyFilterSearchParams() {
     }, [])
     //update existing queryOptions (upgraded setSearchParams method, to set in the url with only truthy params values)
     function setSearchParamsFromTruthyFilter(queryOptions) {
-        setSearchParams(utilService.getTruthyValues(queryOptions))
+        setSearchParams(getTruthyValues(queryOptions))
     }
 
         

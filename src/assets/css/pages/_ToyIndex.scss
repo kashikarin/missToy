@@ -4,7 +4,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: start;
+
     a {
-        margin-block-start: calc(var(--filter-height, 0px) + 1.5rem);
+        margin-block-start: 10px;
     }
 }
+

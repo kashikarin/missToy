@@ -9,49 +9,40 @@ import { loadToys, setQueryOptions, removeToy } from "../../store/actions/toy.ac
 import Loader from '../assets/images/Loader.svg'
 
 export function ToyIndex(){
-
   const queryOptions = useSelector(state => state.toyModule.queryOptions)
   const toys = useSelector(state => state.toyModule.toys)
   const isLoading = useSelector(state => state.systemModule.isLoading)
   const [toyLabels, setToyLabels] = useState([])
-
+  const isMobile = useSelector(state => state.systemModule.isMobile)
   const setSearchParamsFromTruthyFilter = useTruthyFilterSearchParams()
 
   useEffect(()=>{
-    onUpdateFilter()
+    loadToyLabels()
     setSearchParamsFromTruthyFilter(queryOptions)
+    loadToys(queryOptions)
   }, [queryOptions])
 
   function onSetQueryOptions(queryOptionsObj) {
     setQueryOptions(queryOptionsObj)
   }
 
-  async function onUpdateFilter(){
-      let [ ,labels] = await Promise.all([loadToys(), getToyLabels()])
-      let labelsArr = labels.map(label => ({label, value: label }))
-      setToyLabels(labelsArr)
-    }
+  async function loadToyLabels(){
+      const labels = await toyService.getToyLabels()
+      setToyLabels(labels)
+  }
 
   async function onRemoveToy(toyId) {
       await removeToy(toyId)
   }
 
-  async function getToyLabels(){
-    const labels = await toyService.getToyLabels()
-    return Promise.resolve(labels)
-    
-  }
+  if (isLoading) return <img src={Loader} alt='Loading...' style={{ margin: '0 auto' }}/>
 
-  if (isLoading) return <img src={Loader} alt='Loading...' />
-console.log('BASE_URL:', import.meta.env.BASE_URL)
-console.log('DEV mode?', import.meta.env.DEV)
   return(
-      <section className="toy-index-container">
+      <section className={`toy-index-container ${isMobile ? "mobile-index-layout" : ""}`}>
         <ToyFilter queryOptions={queryOptions} toyLabels={toyLabels} onSetQueryOptions={onSetQueryOptions} />
         <Link to='/toy/edit'><button>Add Toy</button></Link>
         {toys.length === 0? <span style={{fontSize: '20px', marginBlockStart: '15px'}}>No toys to show</span> : <ToyList toys={toys} onRemoveToy={onRemoveToy} />}
       </section>
-      
     )
 }
 

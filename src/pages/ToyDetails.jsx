@@ -1,7 +1,7 @@
 import { useEffect,useState } from "react"
 import { Link, useParams } from "react-router"
 import { toyService } from "../../services/toy.service"
-import { utilService } from "../../services/util.service"
+import { getFormattedDate } from "../../services/util.service"
 
 
 export function ToyDetails(){
@@ -42,11 +42,11 @@ export function ToyDetails(){
                         </p>
                         <p className="toy-detail-line">
                             <span className='p-label'>Stock Status: </span>
-                            <span>{toy.status? 'In Stock' : 'Soldout'}</span>
+                            <span>{toy.status ? 'In Stock' : 'Soldout'}</span>
                         </p>
                         <p className="toy-detail-line">
                             <span className='p-label'>Creation Date: </span>
-                            <span>{utilService.getFormattedDate(toy.createdAt)}</span>
+                            <span>{getFormattedDate(toy.createdAt)}</span>
                         </p>
                     </article>
                     <Link className='button-like' to='/toy'>Back</Link>

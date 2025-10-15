@@ -5,6 +5,10 @@
   height: 100vh;
   overflow-y: auto; 
 
+    @include for-normal-layout {
+        grid-template-columns: 20px 1fr 20px;
+    }
+
   .full {
       grid-column: 1 / -1;
   }
@@ -22,6 +26,9 @@
 
    main {
     display: content;
+    @include for-normal-layout {
+      margin-block-start: 60px;
+    }
     grid-column: 2;
     grid-row: 2;
     min-height: 0;

@@ -1,10 +1,21 @@
 import { NavLink, Link } from "react-router"
 import { ThemeSwitcher } from "./ThemeSwitcher"
 import { useRef, useEffect } from "react"
+import { setNarrowScreen, setWideScreen } from "../../store/actions/system.actions"
 
 export function AppHeader(){
     const headerRef = useRef()
     
+    useEffect(()=>{
+        function handleResize(){
+            if (window.innerWidth >= 1000) setWideScreen()
+            else setNarrowScreen()
+        }
+
+        window.addEventListener("resize", handleResize)
+        return () => window.removeEventListener("resize", handleResize)
+    }, [])
+
     useEffect(() => {
         const headerEl = headerRef.current
         if (!headerEl) return
@@ -22,17 +33,17 @@ export function AppHeader(){
 
     return (
         <header className="app-header-container full" ref={headerRef}>
-            <Link className='misstoys-logo'to='/'><h1 >missToys</h1></Link>
-            <div className="nav-container">
-                <nav>
-                    <NavLink to='/about'>About</NavLink>
-                    <NavLink to='/toy'>Toys</NavLink>
-                </nav>
-                <div className="theme-switcher-wrapper">
-                    <ThemeSwitcher />   
-                </div>
-            </div> 
+            <div className="app-header-wrapper">
+               <Link className='misstoys-logo'to='/'><h1 >missToys</h1></Link>
+                <div className="nav-container">
+                    <nav>
+                        <NavLink to='/about'>About</NavLink>
+                        <NavLink to='/toy'>Toys</NavLink>
+                    </nav>
 
+                    <ThemeSwitcher />
+                </div>  
+            </div>
         </header>
 
     )

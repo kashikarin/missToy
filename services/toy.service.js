@@ -1,6 +1,6 @@
 
 import { storageService } from './async-storage.service.js'
-import { utilService } from './util.service.js'
+import { getRandomIntInclusive, loadFromStorage, makeId, saveToStorage } from './util.service.js'
 
 const STORAGE_KEY = 'toyDB'
 _createToys()
@@ -20,11 +20,12 @@ export const toyService = {
     getQueryOptionsFromSearchParams
 }
 
-function query(queryOptions = {}) {   
-    return storageService.query(STORAGE_KEY)
+async function query(queryOptions = {}) {   
+    return await storageService.query(STORAGE_KEY)
         .then(toys => {
             let multiplier = queryOptions.sortOrder 
             if (queryOptions.sortOrder === "") multiplier = 1
+            
             if (queryOptions.name) {
                 const regExp = new RegExp(queryOptions.name, 'i')
                 toys = toys.filter(toy => regExp.test(toy.name))
@@ -34,8 +35,8 @@ function query(queryOptions = {}) {
                 toys = toys.filter(toy => queryOptions.labels.every(filteredLabel => toy.labels.includes(filteredLabel)))
             }
 
-            if (queryOptions.status !== 'all') {
-                toys = toys.filter(toy => (toy.status ? toy.status : !toy.status))
+            if (queryOptions.status !== '') {
+                if (queryOptions.status === true) toys = toys.filter(toy => toy.status === true)
             }
 
             if (queryOptions.sortField === 'name') {
@@ -51,7 +52,6 @@ function query(queryOptions = {}) {
             }
             return toys
         })
-
 }
 
 
@@ -75,7 +75,7 @@ function save(toy) {
 }
 
 function getEmptyToy(name = '', labels = []) {
-    return { name, labels, status: true }
+    return { name, labels, status: 'inStock' }
 }
 
 function getDefaultQueryOptions() {
@@ -99,7 +99,7 @@ function getQueryOptionsFromSearchParams(searchParams) {
     const queryOptions = {}
     for (const field in defaultQueryOptions) {
         queryOptions[field] = searchParams.get(field) || ''
-        if (field === sortOrder && searchParams.get(field) === "") queryOptions[field] = 1
+        if (field === 'sortOrder' && searchParams.get(field) === "") queryOptions[field] = 1
     }
     return queryOptions
 }
@@ -109,13 +109,13 @@ function getToyLabels(){
 }
 
 function _createToys() {
-    let toys = utilService.loadFromStorage(STORAGE_KEY)
+    let toys = loadFromStorage(STORAGE_KEY)
     if (!toys || !toys.length) {
         toys = []
         const labels = ['On Wheels', 'Box Game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdoor', 'Battery Powered']
         const names = ['Talking Doll', 'Remote Control Car', 'Scooter', 'Play Doh', 'Puzzle', 'Cards Game']
         for (let i = 0; i < 20; i++) {
-            const toyName = names[utilService.getRandomIntInclusive(0, names.length - 1)]
+            const toyName = names[getRandomIntInclusive(0, names.length - 1)]
             let toyLabels = []
             switch(toyName) {
                 case names[0]: 
@@ -140,15 +140,15 @@ function _createToys() {
             }
             toys.push(_createToy(toyName + (i + 1), toyLabels))
         }
-        utilService.saveToStorage(STORAGE_KEY, toys)
+        saveToStorage(STORAGE_KEY, toys)
     }
 }
 
 function _createToy(name, labels) {
     const toy = getEmptyToy(name, labels)
-    toy._id = utilService.makeId()
-    toy.createdAt = toy.updatedAt = Date.now() - utilService.getRandomIntInclusive(0, 1000 * 60 * 60 * 24)
-    toy.price = utilService.getRandomIntInclusive(50, 250)
+    toy._id = makeId()
+    toy.createdAt = toy.updatedAt = Date.now() - getRandomIntInclusive(0, 1000 * 60 * 60 * 24)
+    toy.price = getRandomIntInclusive(50, 250)
     toy.imageUrl = `${import.meta.env.BASE_URL}toy-images/${name.replaceAll(" ", "").replace(/[0-9]/g, '')}.png`
 
 

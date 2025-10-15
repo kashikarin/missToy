@@ -1,17 +1,18 @@
 .theme-switcher-container {
     cursor: pointer;    
-    margin-right: 10px;
+    // margin-right: 10px;
     display: flex;
     justify-content: end;
     align-items: center;
     gap: 10px;
     width: max-content;
+    height: auto;    
     
     span {
         font-size: 18px;
         color: whitesmoke;
         @include for-normal-layout {
-            font-size: 20px;
+            display: none;
         }
     }
     i {

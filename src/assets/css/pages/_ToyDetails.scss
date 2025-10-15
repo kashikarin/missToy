@@ -1,8 +1,10 @@
 .toy-details-wrapper {
-    width: 100vw;
-    height: 100vh;
+    width: 80%;
+    height: 100%;
     background-color: var(--clr3);
     padding: 40px;
+    margin: 0 auto;
+    
 }
 
 .toy-details-container {
@@ -11,26 +13,39 @@
     grid-template-rows: 60% 30% 10%;
     border-radius: 20px;
     background-color: var(--clr1bg);
-    width: 80vw;
-    height: 60vh;
+    width: 80%;
+    height: 60%;
     margin-inline: auto;
     position: relative;
     color: var(--clr1);
+    padding-block-end: 100px;
+    padding-block-start: 10px;
     @include for-normal-layout {
-        width: 60vw;
-        height: 70vh;
+        width: 100%;
+        height: 100%;
     }
     
+    
     a {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: fit-content; 
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 20px auto;
-        width: 100px;
+        padding: 5px;
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: translateX(-50%) scale(1.1);
+        }
+
     }
     img {
         object-fit: contain;
-        height: 400px;
+        height: 100%;
         width: 100%;
     }
     .toy-detail-line {

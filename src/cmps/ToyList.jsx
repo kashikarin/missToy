@@ -3,7 +3,7 @@ import { ToyPreview } from "./ToyPreview.jsx"
 import Loader from '../assets/images/Loader.svg'  
 import { useRef } from "react"
 import 'animate.css'
-import { utilService } from "../../services/util.service";
+import { animateCSS } from "../../services/util.service";
 
 
 export function ToyList({toys, onRemoveToy}){
@@ -13,7 +13,7 @@ export function ToyList({toys, onRemoveToy}){
     const editIcon = <i className="fas fa-edit"></i>
     
     async function handleRemove(id){
-        await utilService.animateCSS(toyPreviewRef.current, 'fadeOut')
+        await animateCSS(toyPreviewRef.current, 'fadeOut')
         await onRemoveToy(id)
     }
 

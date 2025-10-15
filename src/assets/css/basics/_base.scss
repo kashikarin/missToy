@@ -56,10 +56,6 @@ button {
     * {
         pointer-events: none;
     }
-    transition: transform 0.5s ease;
-    &:hover {
-        transform: scale(1.1);
-    }
 }
 
 input,
@@ -152,11 +148,11 @@ select {
     * {
         pointer-events: none;
     }
-    transition: transform 0.5s ease;
+    // transition: transform 0.5s ease;
 
-    &:hover {
-        transform: scale(1.1);
-    }
+    // &:hover {
+    //     transform: scale(1.1);
+    // }
 }
 
 

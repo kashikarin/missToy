@@ -1,17 +1,4 @@
-export const utilService = {
-    makeId,
-    makeLorem,
-    getRandomIntInclusive,
-    loadFromStorage,
-    saveToStorage,
-    animateCSS,
-    elapsedTime,
-    debounce,
-    getTruthyValues,
-    getFormattedDate
-}
-
-function makeId(length = 6) {
+export function makeId(length = 6) {
     var txt = ''
     var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 
@@ -22,7 +9,7 @@ function makeId(length = 6) {
     return txt
 }
 
-function makeLorem(size = 100) {
+export function makeLorem(size = 100) {
     const words = ['The sky', 'above', 'the port', 'was', 'the color' ,'of nature', 'tuned', 'to', 'a live channel', 'All', 'this happened', 'more or less', 'I', 'had', 'the story', 'bit by bit', 'from various people', 'and', 'as generally', 'happens', 'in such cases', 'each time', 'it', 'was', 'a different story', 'a pleasure', 'to', 'burn']
     var txt = ''
     while (size > 0) {
@@ -33,22 +20,22 @@ function makeLorem(size = 100) {
     return txt
 }
 
-function getRandomIntInclusive(min, max) {
+export function getRandomIntInclusive(min, max) {
     min = Math.ceil(min)
     max = Math.floor(max)
     return Math.floor(Math.random() * (max - min + 1)) + min //The maximum is inclusive and the minimum is inclusive 
 }
 
-function saveToStorage(key, value) {
+export function saveToStorage(key, value) {
     localStorage.setItem(key, JSON.stringify(value))
 }
 
-function loadFromStorage(key) {
+export function loadFromStorage(key) {
     const data = localStorage.getItem(key)
     return (data) ? JSON.parse(data) : undefined
 }
 
-function animateCSS(el, animation='bounce') {
+export function animateCSS(el, animation='bounce') {
     const prefix = 'animate__'
     return new Promise((resolve, reject) => {
         const animationName = `${prefix}${animation}`
@@ -63,7 +50,7 @@ function animateCSS(el, animation='bounce') {
     })
 }
 
-function elapsedTime(pastMs) {
+export function elapsedTime(pastMs) {
     const now = new Date()
     const secondsPast = Math.round((now - pastMs) / 1000)
 
@@ -79,7 +66,7 @@ function elapsedTime(pastMs) {
 
 }
 
-function debounce(func, timeout = 1000) {
+export function debounce(func, timeout = 1000) {
     let timer
     return (...args) => {
         clearTimeout(timer)
@@ -89,7 +76,7 @@ function debounce(func, timeout = 1000) {
     }
 }
 
-function getTruthyValues(obj) {
+export function getTruthyValues(obj) {
     const truthyObj = {}
     for (const key in obj) {
         const val = obj[key]
@@ -100,7 +87,7 @@ function getTruthyValues(obj) {
     return truthyObj
 }
 
-function getFormattedDate(time) {
+export function getFormattedDate(time) {
     const date = new Date(time)
     const formattedDate = date.toLocaleDateString()
     return formattedDate

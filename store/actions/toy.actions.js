@@ -2,19 +2,19 @@ import { toyService } from "../../services/toy.service";
 import { SET_ISLOADING } from "../reducers/system.reducer";
 import { ADD_TOY, REMOVE_TOY, SET_QUERYOPTIONS, SET_TOYS, UPDATE_TOY } from "../reducers/toy.reducer";
 import { store } from "../store";
+import { setLoading, setNotLoading } from "./system.actions";
 
 
-export async function loadToys(){
-    const queryOptions = store.getState().toyModule.queryOptions
-    store.dispatch({type: SET_ISLOADING, isLoading: true})
+export async function loadToys(queryOptions){
+    setLoading()
     try {
         const toys = await toyService.query(queryOptions)
-        store.dispatch({type: SET_TOYS, toys})
+        store.dispatch(getCmdSetToys(toys))
     } catch(err){
         console.error('toy actions => failed to load toys', err)
         throw err
     } finally {
-        store.dispatch({type: SET_ISLOADING, isLoading: false})
+        setNotLoading()
 
     }
 }
@@ -22,7 +22,7 @@ export async function loadToys(){
 export async function removeToy(toyId) {
     try {
         await toyService.remove(toyId)
-        store.dispatch({type: REMOVE_TOY, toyId})
+        store.dispatch(getCmdRemoveToy(toyId))
     } catch(err) {
         console.error('toy actions => failed to remove toy', err)
         throw err   
@@ -30,19 +30,56 @@ export async function removeToy(toyId) {
 }
 
 export function setQueryOptions(queryOptions) {
-    store.dispatch({ type: SET_QUERYOPTIONS, queryOptions })
+    store.dispatch(getCmdSetQueryOptions(queryOptions))
 }
 
 export async function saveToy(toyToSave) {
     try {
         const toy = await toyService.save(toyToSave)
         if (toyToSave._id) {
-            store.dispatch({type: ADD_TOY, toy})
+            store.dispatch(getCmdAddToy(toy))
         } else {
-            store.dispatch({type: UPDATE_TOY, toy})
+            store.dispatch(getCmdUpdateToy(toy))
         }
     } catch(err) {
         console.error('toy actions => failed to save toy', err)
         throw err
     }
+}
+
+
+//comand creators
+function getCmdSetToys(toys) {
+  return {
+    type: SET_TOYS,
+    toys
+  }
+}
+
+function getCmdRemoveToy(toyId) {
+  return {
+    type: REMOVE_TOY,
+    toyId
+  }
+}
+
+function getCmdSetQueryOptions(queryOptions) {
+  return {
+    type: SET_QUERYOPTIONS,
+    queryOptions
+  }
+}
+
+function getCmdAddToy(toy) {
+  return {
+    type: ADD_TOY,
+    toy
+  }
+}
+
+function getCmdUpdateToy(toy) {
+  return {
+    type: UPDATE_TOY,
+    toy
+  }
 }

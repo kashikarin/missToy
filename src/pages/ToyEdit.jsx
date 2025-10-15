@@ -7,7 +7,7 @@ import Loader from '../assets/images/Loader.svg'
 export function ToyEdit(){
     const params = useParams()
     const [isLoading, setIsLoading] = useState(false)
-    const emptyToy = {name: '', price: '', status: true}
+    const emptyToy = {name: '', price: '', status: 'inStock'}
     const [toyToEdit, setToyToEdit] = useState(emptyToy)
     const navigate = useNavigate()
     useEffect(()=>{
@@ -37,7 +37,8 @@ export function ToyEdit(){
             case 'checkbox':
                 value = target.checked
                 break
-
+            case 'select-one':
+                value = target.checked === "true" ? true : false
             default: break
         }
 
@@ -63,8 +64,8 @@ export function ToyEdit(){
                         <input type="text" name='name' autoComplete='off' value={name} placeholder='Toy Name' onChange={handleChange}/>
                         <input type="number" name='price' value={price} placeholder='Toy Price' onChange={handleChange}/>
                         <select name="status" value={toyToEdit.status} onChange={handleChange} >
-                            <option value={true} defaultChecked>In Stock</option>
-                            <option value={false}>Soldout</option>
+                            <option value={'true'}>In Stock</option>
+                            <option value={'false'}>Sold out</option>
                         </select>
                     </div>
                     <button className='save-toy-btn' style={{padding: "0"}}>{isLoading? loader : 'Save'}</button>

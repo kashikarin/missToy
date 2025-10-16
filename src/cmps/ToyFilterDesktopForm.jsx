@@ -1,4 +1,5 @@
 import { useRef, useState } from "react"
+import { useEffectUpdate } from "../../customHooks/useEffectUpdate"
 
 export function ToyFilterDesktopForm({
                     queryOptions, 
@@ -6,9 +7,14 @@ export function ToyFilterDesktopForm({
                     onClearFilter,
                     onSetQueryOptions
                 }){
+                    const [name, setName] = useState(queryOptions.name || "")
                     const formWrapperDivRef = useRef()
                     const labelsDropdownRef = useRef()
                     const [isLabelsDropdownOpen, setIsLabelsDropdownOpen] = useState(false)
+
+                    useEffectUpdate(()=>{
+                        onSetQueryOptions( {name} )
+                    }, [name])
 
                     function handleChange({target}) {   
                         const field = target.name
@@ -27,7 +33,7 @@ export function ToyFilterDesktopForm({
                                 value = target.value
                                 break
                         }
-                        onSetQueryOptions({ ...queryOptions, [field]: value, [`${field}Changed`]: true })
+                        onSetQueryOptions({ [field]: value, [`${field}Changed`]: true })
                     }
 
                     
@@ -55,7 +61,7 @@ export function ToyFilterDesktopForm({
                         const labels = queryOptions.labels.includes(label)?
                                 queryOptions.labels.filter(l => l !== label)
                             : [...queryOptions.labels, label]
-                        onSetQueryOptions({ ...queryOptions, labels})
+                        onSetQueryOptions({ labels })
                     }
 
                     return(
@@ -67,9 +73,9 @@ export function ToyFilterDesktopForm({
                                     type="text" 
                                     className='toy-filter-desktop-name-input'
                                     name='name' 
-                                    onChange={handleChange}
+                                    onChange={({target})=>setName(target.value)}
                                     placeholder='Toy name' 
-                                    value={queryOptions.name}
+                                    value={name}
                                 />
                                 {/* labels filter */}
                                 <div className="toy-filter-desktop-labels-selection" ref={labelsDropdownRef}>

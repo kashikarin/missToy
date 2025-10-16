@@ -68,12 +68,12 @@ export function elapsedTime(pastMs) {
 
 }
 
-export function debounce(func, timeout = 1000) {
+export function debounce(func, timeout = 400) {
     let timer
     return (...args) => {
         clearTimeout(timer)
         timer = setTimeout(() => {
-            func.apply(this, args)
+            func( ...args)
         }, timeout)
     }
 }

@@ -6,7 +6,7 @@ import { toyService } from "../../services/toy.service";
 import { useEffect, useState } from "react";
 import { useTruthyFilterSearchParams } from "../../customHooks/useTruthyFilterSearchParams";
 import { loadToys, setQueryOptions, removeToy } from "../../store/actions/toy.actions";
-import Loader from '../assets/images/Loader.svg'
+import { ToyLoader } from "../cmps/ToyLoader";
 
 export function ToyIndex(){
   const queryOptions = useSelector(state => state.toyModule.queryOptions)
@@ -35,7 +35,7 @@ export function ToyIndex(){
       await removeToy(toyId)
   }
 
-  if (isLoading) return <img src={Loader} alt='Loading...' style={{ display: 'block', margin: '0 auto' }}/>
+  if (isLoading) return <ToyLoader />
 
   return(
       <section className={`toy-index-container ${isMobile ? "mobile-index-layout" : ""}`}>

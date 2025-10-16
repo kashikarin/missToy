@@ -1,9 +1,9 @@
 import { Link } from "react-router"
-import { ToyPreview } from "./ToyPreview.jsx"
-import Loader from '../assets/images/Loader.svg'  
+import { ToyPreview } from "./ToyPreview.jsx"  
 import { useRef } from "react"
 import 'animate.css'
 import { animateCSS } from "../../services/util.service";
+import { ToyLoader } from "./ToyLoader.jsx"
 
 
 export function ToyList({toys, onRemoveToy}){
@@ -17,10 +17,9 @@ export function ToyList({toys, onRemoveToy}){
         await onRemoveToy(id)
     }
 
-    const loader = <img src={Loader} alt='Loading...' />
     return(
         <ul className="toy-list-container">
-            {!Array.isArray(toys) || toys.length === 0? loader : toys.map(toy => <li key={toy._id}>
+            {!Array.isArray(toys) || toys.length === 0? <ToyLoader /> : toys.map(toy => <li key={toy._id}>
                 <ToyPreview toy={toy}/>
                 <section className='toy-li-buttons-container'>
                     <button onClick={()=>{handleRemove(toy._id)}}>{removeIcon}</button>

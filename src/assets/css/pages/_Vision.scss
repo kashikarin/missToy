@@ -1,5 +1,11 @@
 .about-vision-container  {
-    > h1 {
+    & > h1 {
         color: var(--clr2);
     }
+
+    & > p {
+        font-size: 20px;
+        color: var(--clr1);
+    }
+
 }

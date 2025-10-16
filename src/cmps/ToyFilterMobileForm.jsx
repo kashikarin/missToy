@@ -33,8 +33,8 @@ export function ToyFilterMobileForm({
     function toggleLabel(label) {
         label = label.toLowerCase()
         setLocalQueryOptions(prev => {
-        const labels = prev.labels.includes(label)?
-             prev.labels.filter(l => l !== label)
+        const labels = prev?.labels?.includes(label)?
+             prev?.labels?.filter(l => l !== label)
             : [...prev.labels, label]        
             return { ...prev, labels }
         })
@@ -105,7 +105,7 @@ export function ToyFilterMobileForm({
                                     <button type='submit' className="submit-filter-btn">
                                         Submit
                                     </button>
-                                    <button className="clear-filter-btn" onClick={()=> setLocalQueryOptions(toyService.getDefaultQueryOptions())}>
+                                    <button type="button" className="clear-filter-btn" onClick={()=> setLocalQueryOptions(toyService.getDefaultQueryOptions())}>
                                         Clear
                                     </button>
                                     

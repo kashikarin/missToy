@@ -1,0 +1,43 @@
+.toy-loader-cubes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 3rem auto;
+
+  /* 🎨 פלטת הצבעים שלך */
+  --cube-1-color: #f8a1d1;
+  --cube-2-color: #ffd966;
+  --cube-3-color: #9ad0ec;
+  --cube-4-color: #b6e388;
+}
+
+.cube {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Comic Sans MS", "Poppins", sans-serif;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transform-origin: bottom center;
+  animation: wiggle 1.2s ease-in-out infinite;
+  border: 3px solid rgba(255, 255, 255, 0.8);
+
+  /* כל קובייה משתמשת ב-var שונה */
+  &.cube-1 { background: var(--cube-1-clr); animation-delay: 0s; }
+  &.cube-2 { background: var(--cube-2-clr); animation-delay: 0.15s; }
+  &.cube-3 { background: var(--cube-3-clr); animation-delay: 0.3s; }
+  &.cube-4 { background: var(--cube-4-clr); animation-delay: 0.45s; }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  25% { transform: rotate(-10deg) translateY(-8px); }
+  50% { transform: rotate(8deg) translateY(-4px); }
+  75% { transform: rotate(-6deg) translateY(-6px); }
+}

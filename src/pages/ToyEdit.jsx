@@ -38,7 +38,7 @@ export function ToyEdit(){
                 value = target.checked
                 break
             case 'select-one':
-                value = target.checked === "true" ? true : false
+                if (field === 'status') value = value === 'true'
             default: break
         }
 
@@ -48,7 +48,14 @@ export function ToyEdit(){
     async function handleSubmit(ev) {
         ev.preventDefault()
         setIsLoading(true)
-        await saveToy(toyToEdit)
+
+        const toyToSave = {
+            ...toyToEdit,
+            status: toyToEdit.status === 'true',
+            imageUrl: toyService.getToyImageUrl(toyToEdit.name)
+        }
+
+        await saveToy(toyToSave)
         navigate('/toy')
     }
     
@@ -63,7 +70,7 @@ export function ToyEdit(){
                     <div className="edit-inputs-wrapper">
                         <input type="text" name='name' autoComplete='off' value={name} placeholder='Toy Name' onChange={handleChange}/>
                         <input type="number" name='price' value={price} placeholder='Toy Price' onChange={handleChange}/>
-                        <select name="status" value={toyToEdit.status} onChange={handleChange} >
+                        <select name="status" value={String(toyToEdit.status)} onChange={handleChange} >
                             <option value={'true'}>In Stock</option>
                             <option value={'false'}>Sold out</option>
                         </select>

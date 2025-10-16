@@ -16,6 +16,7 @@ export const toyService = {
     getEmptyToy,
     // getRandomToy,
     getDefaultQueryOptions,
+    getToyImageUrl,
     // getExistingLabels,
     getQueryOptionsFromSearchParams
 }
@@ -120,6 +121,20 @@ function getQueryOptionsFromSearchParams(searchParams) {
 
 function getToyLabels(){
     return Promise.resolve(gToyLabels)
+}
+
+function getToyImageUrl(name){ 
+    let toyName
+    if (name.toLowerCase().includes('puzzle')) toyName = 'Puzzle'
+    else if ((name.toLowerCase().includes('play doh')) || (name.toLowerCase().includes('play-doh'))) toyName = 'PlayDoh'
+    else if ((name.toLowerCase().includes('cards game')) || (name.toLowerCase().includes('cards-game'))) toyName = 'CardsGame'
+    else if ((name.toLowerCase().includes('remote control car')) || (name.toLowerCase().includes('remote-control-car'))) toyName = 'RemoteControlCar'
+    else if (name.toLowerCase().includes('scooter')) toyName = 'Scooter'
+    else if ((name.toLowerCase().includes('talking doll')) || (name.toLowerCase().includes('talking-doll'))) toyName = 'TalkingDoll'
+    else toyName = 'NoImageToDisplay'
+
+     
+    return `toy-images/${toyName}.png`
 }
 
 function _createToys() {

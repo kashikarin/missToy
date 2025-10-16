@@ -44,7 +44,7 @@ export function animateCSS(el, animation='bounce') {
         el.classList.add(`${prefix}animated`, animationName)
         function handleAnimationEnd(event) {
             event.stopPropagation()
-            el.classList.remove(`${prefix}animated`, animationName)
+            // el.classList.remove(`${prefix}animated`, animationName)
             resolve('Animation ended')
         }
 

@@ -7,7 +7,7 @@ import Loader from '../assets/images/Loader.svg'
 export function ToyEdit(){
     const params = useParams()
     const [isLoading, setIsLoading] = useState(false)
-    const emptyToy = {name: '', price: '', status: 'inStock'}
+    const emptyToy = {name: '', price: '', status: true}
     const [toyToEdit, setToyToEdit] = useState(emptyToy)
     const navigate = useNavigate()
     useEffect(()=>{

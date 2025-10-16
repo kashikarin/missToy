@@ -27,7 +27,7 @@ export function ToyFilterMobileForm({
                 value = target.value
                 break
         }
-        setLocalQueryOptions(prevLocalQueryOptions => ({ ...prevLocalQueryOptions, [field]: value }))
+        setLocalQueryOptions(prevLocalQueryOptions => ({ ...prevLocalQueryOptions, [field]: value, [`${field}Changed`]: true }))
     }
 
     function toggleLabel(label) {

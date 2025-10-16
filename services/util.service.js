@@ -1,3 +1,5 @@
+import { toyService } from "./toy.service"
+
 export function makeId(length = 6) {
     var txt = ''
     var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
@@ -77,10 +79,14 @@ export function debounce(func, timeout = 1000) {
 }
 
 export function getTruthyValues(obj) {
+    const defaultOptions = toyService.getDefaultQueryOptions()
     const truthyObj = {}
     for (const key in obj) {
+        if (key.endsWith('Changed')) continue
+        const defaultValue = defaultOptions[key]
+        const changed = obj[`${key}Changed`]
         const val = obj[key]
-        if (val || typeof val === 'boolean') {
+        if ((changed || val !== defaultValue) && (val || typeof val === 'boolean')) {
             truthyObj[key] = val
         }
     }

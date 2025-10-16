@@ -24,7 +24,7 @@ async function query(queryOptions = {}) {
     return await storageService.query(STORAGE_KEY)
         .then(toys => {
             let multiplier = queryOptions.sortOrder 
-            if (queryOptions.sortOrder === "") multiplier = 1
+            // if (queryOptions.sortOrder === "") multiplier = 1
             
             if (queryOptions.name) {
                 const regExp = new RegExp(queryOptions.name, 'i')
@@ -75,11 +75,25 @@ function save(toy) {
 }
 
 function getEmptyToy(name = '', labels = []) {
-    return { name, labels, status: 'inStock' }
+    return { name, labels, status: true }
 }
 
 function getDefaultQueryOptions() {
-    return { name: '', status: '', labels: [], sortField: '', sortOrder: "" }
+    return { name: '', status: true, labels: [], sortField: '', sortOrder: 1 }
+}
+
+function normalizeQueryOptions(rawOptions) {
+  return {
+    ...rawOptions,
+    status:
+      rawOptions.status === '' || rawOptions.status === undefined
+        ? true
+        : rawOptions.status === 'true',
+    sortOrder: 
+        rawOptions.sortOrder === '' || rawOptions.sortOrder === undefined
+            ? 1
+            : Number(rawOptions.sortOrder),
+  }
 }
 
 // async function getExistingLabels(queryOptions){
@@ -101,7 +115,7 @@ function getQueryOptionsFromSearchParams(searchParams) {
         queryOptions[field] = searchParams.get(field) || ''
         if (field === 'sortOrder' && searchParams.get(field) === "") queryOptions[field] = 1
     }
-    return queryOptions
+    return normalizeQueryOptions(queryOptions)
 }
 
 function getToyLabels(){

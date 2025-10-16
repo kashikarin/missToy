@@ -27,7 +27,7 @@ export function ToyFilterDesktopForm({
                                 value = target.value
                                 break
                         }
-                        onSetQueryOptions({ ...queryOptions, [field]: value })
+                        onSetQueryOptions({ ...queryOptions, [field]: value, [`${field}Changed`]: true })
                     }
 
                     
@@ -111,7 +111,7 @@ export function ToyFilterDesktopForm({
                                         id='toyStatus' 
                                         name='status'
                                         type="checkbox" 
-                                        checked={queryOptions.status} 
+                                        checked={queryOptions.status}
                                         onChange={handleChange} 
                                     />
                                     In stock toys only

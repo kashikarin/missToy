@@ -34,7 +34,7 @@ export function AppHeader(){
     return (
         <header className="app-header-container full" ref={headerRef}>
             <div className="app-header-wrapper">
-               <Link className='misstoys-logo'to='/'><h1 >missToys</h1></Link>
+               <Link className='misstoy-logo'to='/'><h1 >missToy</h1></Link>
                 <div className="nav-container">
                     <nav>
                         <NavLink to='/about'>About</NavLink>

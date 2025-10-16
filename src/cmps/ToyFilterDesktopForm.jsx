@@ -58,6 +58,7 @@ export function ToyFilterDesktopForm({
                     }
 
                     function toggleLabel(label) {
+                        label = label.toLowerCase()
                         const labels = queryOptions.labels.includes(label)?
                                 queryOptions.labels.filter(l => l !== label)
                             : [...queryOptions.labels, label]

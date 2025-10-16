@@ -51,7 +51,7 @@ export function ToyEdit(){
 
         const toyToSave = {
             ...toyToEdit,
-            status: toyToEdit.status === 'true',
+            // status: toyToEdit.status === 'true',
             imageUrl: toyService.getToyImageUrl(toyToEdit.name)
         }
 
@@ -71,6 +71,7 @@ export function ToyEdit(){
                         <input type="text" name='name' autoComplete='off' value={name} placeholder='Toy Name' onChange={handleChange}/>
                         <input type="number" name='price' value={price} placeholder='Toy Price' onChange={handleChange}/>
                         <select name="status" value={String(toyToEdit.status)} onChange={handleChange} >
+                            
                             <option value={'true'}>In Stock</option>
                             <option value={'false'}>Sold out</option>
                         </select>

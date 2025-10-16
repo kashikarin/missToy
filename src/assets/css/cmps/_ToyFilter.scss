@@ -30,7 +30,7 @@
             border: 1px solid var(--clr2);
             font-family: 'DM Sans', sans-serif;
             color: var(--clr2);
-            background-color: #fff;
+            background-color: var(--clr1bg);
             height: 2.5rem;
 
             &:hover {
@@ -44,28 +44,28 @@
             position: relative;
             // labels selection scroll-bars
             scrollbar-width: thin;
-            scrollbar-color: var(--clr2) #f9f9f9;
+            scrollbar-color: var(--clr1bg);
             /* Webkit Browsers (Chrome, Edge, Safari) */
             &::-webkit-scrollbar {
-                height: 6px; /* סקרול אופקי בלבד */
+                height: 6px;
             }
             &::-webkit-scrollbar-track {
-                background: #f9f9f9;
+                background-color: var(--clr1bg);
                 border-radius: 10px;
             }
             &::-webkit-scrollbar-thumb {
-                background-color:var(--clr2);
+                background-color: var(--clr2);
                 border-radius: 10px;
             }
             &::-webkit-scrollbar-thumb:hover {
-                background-color:var(--clr2);
+                background-color: var(--clr2);
             }
             
             .labels-trigger {
                 padding: 0.5rem 0.75rem;
                 border: 1px solid var(--clr2);
                 border-radius: 8px;
-                background: #fff;
+                background:var(--clr1bg);
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -98,7 +98,7 @@
                     .toy-filter-label-tag {
                         display: inline-flex;
                         align-items: center;
-                        background: white;   
+                        background: var(--clr1bg);   
                         color: var(--clr2);           
                         border: 1px dotted var(--clr2);
                         border-radius: 12px;
@@ -122,7 +122,7 @@
                             line-height: 1;
 
                             &:hover {
-                                color: #000;  
+                                color:var(--clr1);  
                             }
                         }
                     }
@@ -137,10 +137,10 @@
                 width: 100%;
                 max-height: 200px;
                 overflow-y: auto;
-                border: 1px solid #ddd;
+                border: 1px solid var(--clr2);
                 border-radius: 8px;
                 // display: block;
-                background-color: #fff;
+                background-color: var(--clr1bg);
                 // box-shadow: 0 4px 10px rgba(0,0,0,0.1);
                 z-index: 10;
 
@@ -148,15 +148,15 @@
                     width: 8px;
                 }
                 &::-webkit-scrollbar-track {
-                    background: #f1f1f1;
+                    background: var(--clr3);
                     border-radius: 8px;
                 }
                 &::-webkit-scrollbar-thumb {
-                    background: #ccc;
+                    background: var(--gray1);
                     border-radius: 8px;
                 }
                 &::-webkit-scrollbar-thumb:hover {
-                    background: #999;
+                    background: var(--gray1);
                 }
                 label {
                     display: flex;
@@ -199,7 +199,7 @@
         }
     }
     .clear-filter-btn {
-        background-color: white;
+        background-color: var(--clr1bg);
         padding: 5px 10px;
         font-size: 1rem;
 

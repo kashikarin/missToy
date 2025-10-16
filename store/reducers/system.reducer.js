@@ -4,7 +4,7 @@ export const SET_MOBILE = 'SET_MOBILE'
 export const SET_DESKTOP = 'SET_DESKTOP'
 
 const initialState = {
-    colorTheme: '',
+    colorTheme: 'light',
     isLoading: false,
     isMobile: window.innerWidth < 1000
 }

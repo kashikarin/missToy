@@ -35,7 +35,7 @@ export function ToyIndex(){
       await removeToy(toyId)
   }
 
-  if (isLoading) return <img src={Loader} alt='Loading...' style={{ margin: '0 auto' }}/>
+  if (isLoading) return <img src={Loader} alt='Loading...' style={{ display: 'block', margin: '0 auto' }}/>
 
   return(
       <section className={`toy-index-container ${isMobile ? "mobile-index-layout" : ""}`}>

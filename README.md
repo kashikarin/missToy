@@ -37,7 +37,7 @@ Each toy in the system is represented as an object in the following format:
   status: true,
   imageUrl: "toy-images/PlayDoh.png"
 }
-
+```
 
 ## Services
 export const toyService = {

@@ -38,8 +38,8 @@ Each toy in the system is represented as an object in the following format:
   imageUrl: "toy-images/PlayDoh.png"
 }
 
+
 ## Services
-```js
 export const toyService = {
     query,
     getById,

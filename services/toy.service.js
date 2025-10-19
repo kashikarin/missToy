@@ -14,10 +14,9 @@ export const toyService = {
     save,
     remove,
     getEmptyToy,
-    // getRandomToy,
     getDefaultQueryOptions,
+    normalizeQueryOptions,
     getToyImageUrl,
-    // getExistingLabels,
     getQueryOptionsFromSearchParams
 }
 

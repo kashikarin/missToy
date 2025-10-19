@@ -8,6 +8,7 @@ import { useTruthyFilterSearchParams } from "../../customHooks/useTruthyFilterSe
 import { loadToys, setQueryOptions, removeToy } from "../../store/actions/toy.actions";
 import { ToyLoader } from "../cmps/ToyLoader";
 import { debounce } from "../../services/util.service";
+import { ToySort } from "../cmps/ToySort";
 
 export function ToyIndex(){
   const queryOptions = useSelector(state => state.toyModule.queryOptions)
@@ -45,7 +46,10 @@ export function ToyIndex(){
   return(
       <section className={`toy-index-container ${isMobile ? "mobile-index-layout" : ""}`}>
         <ToyFilter queryOptions={queryOptions} toyLabels={toyLabels} onSetQueryOptions={onSetQueryOptions} />
-        <Link to='/toy/edit'><button>Add Toy</button></Link>
+        <div className="add-toy-sort-toys-container">
+          <Link to='/toy/edit'><button>Add Toy</button></Link>
+          <ToySort queryOptions={queryOptions} onSetQueryOptions={onSetQueryOptions} />
+        </div>
         {toys.length === 0? <span style={{fontSize: '20px', marginBlockStart: '15px'}}>No toys to show</span> : <ToyList toys={toys} onRemoveToy={onRemoveToy} />}
       </section>
     )

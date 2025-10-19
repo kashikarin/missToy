@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useEffectUpdate } from "../../customHooks/useEffectUpdate"
 
 export function ToySort({queryOptions, onSetQueryOptions}){
-    
+    const [isToySortDropdownOpen, setIsToySortDropdownOpen] = useState(false)
     const [sort, setSort] = useState({sortField: queryOptions.sortField, sortOrder: queryOptions.sortOrder})
     
     useEffectUpdate(()=>{
@@ -21,13 +21,19 @@ export function ToySort({queryOptions, onSetQueryOptions}){
     return(
         <div className="toysort-wrapper">
             <div className="toysort-select-wrapper">
-                <select name="sortField" value={sort.sortField} onChange={handleChange}>
+                <select 
+                    name="sortField" 
+                    value={sort.sortField} 
+                    onChange={handleChange}
+                    onClick={() => setIsToySortDropdownOpen(prev => !prev)}
+                >
                     <option value="">Sort By</option>
                     <option value="name">Name</option>
                     <option value="price">Price</option>
                     <option value="createdAt">Creation Date</option>
                 </select>
-                <span className="arrow"><i className="fa fa-chevron-down"></i></span>
+                <span>{isToySortDropdownOpen ? "▲" : "▼"}</span>
+                {/* <span className="arrow"><i className="fa fa-chevron-down"></i></span> */}
             </div>
             <div className="sort-order-container">
                 <label htmlFor="sortOrder">

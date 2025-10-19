@@ -1,9 +1,10 @@
 .toysort-wrapper {
     display: flex;
     flex-direction: row;
-    justify-content: start;
+    justify-content: end;
     // margin-block-start: 20px;
     align-items: center;
+    font-size: 1rem;
     gap: 10px;
         @include for-normal-layout {
             display: flex;
@@ -11,15 +12,36 @@
         }
     .toysort-select-wrapper {
         position: relative;
-        select {
-            background-color: var(--clr3);
-            width: 200px;
-        }
+        
         span {
-            position: absolute;
-            right: 10px;
-            top: 5px;
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                color: var(--clr2);
+                margin-left: 0.5rem;
+                transform: translateY(-50%);
+                font-size: 0.7rem;
+                color: var(--clr2);
+                pointer-events: none;
+            }
+        select {
+            padding-inline-end: 1.5rem;
+            border-radius: 8px;
+            font-family: inherit;
+            background-color: var(--clr3);
+            width: 150px;
+            position: relative;
+            cursor: pointer;   
+            transition: border-color 0.2s ease, background-color 0.2s ease;         
+            &:focus {
+                outline: none;
+            }
+            &:hover {
+                background-color: var(--clr3);
+            }
+            
         }
+        
     }
 
 }
@@ -27,17 +49,22 @@
 .sort-order-container {
     display: flex;
     align-items: center;
-    // align-self: flex-end;
-    margin-inline-end: 30px;
-    gap: 7px;
+    color: var(--clr2);
+    gap: 0.25rem;
     label {
-        font-size: 20px;
         display: flex;
         align-items: center;
-        gap: 7px;
+        gap:  0.3rem;
+        cursor: pointer;
         
         &:has(input:disabled){
             opacity: 0.4;
+        }
+        input {
+          transform: scale(0.8); 
+            accent-color: var(--clr2); 
+            cursor: pointer; 
+            vertical-align: middle;
         }
     }
 }

@@ -45,6 +45,7 @@
             // labels selection scroll-bars
             scrollbar-width: thin;
             scrollbar-color: var(--clr1bg);
+            
             /* Webkit Browsers (Chrome, Edge, Safari) */
             &::-webkit-scrollbar {
                 height: 6px;
@@ -65,7 +66,7 @@
                 padding: 0.5rem 0.75rem;
                 border: 1px solid var(--clr2);
                 border-radius: 8px;
-                background:var(--clr1bg);
+                background: var(--clr1bg);
                 display: flex;
                 justify-content: space-between;
                 align-items: center;

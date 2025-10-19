@@ -26,6 +26,7 @@ Users can switch between **Dark** and **Light** color themes.
 ## Toy Object Structure
 Each toy in the system is represented as an object in the following format:
 
+```js
 {
   _id: 'PTXZFW',
   name: 'Play Doh3',
@@ -38,6 +39,7 @@ Each toy in the system is represented as an object in the following format:
 }
 
 ## Services
+```js
 export const toyService = {
     query,
     getById,

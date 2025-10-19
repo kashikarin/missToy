@@ -1,9 +1,11 @@
 import { useState } from "react"
 import { useEffectUpdate } from "../../customHooks/useEffectUpdate"
+import { useSelector } from "react-redux"
 
 export function ToySort({queryOptions, onSetQueryOptions}){
     const [isToySortDropdownOpen, setIsToySortDropdownOpen] = useState(false)
     const [sort, setSort] = useState({sortField: queryOptions.sortField, sortOrder: queryOptions.sortOrder})
+    const isMobile = useSelector(state => state.systemModule.isMobile)
     
     useEffectUpdate(()=>{
         onSetQueryOptions(sort)
@@ -36,10 +38,27 @@ export function ToySort({queryOptions, onSetQueryOptions}){
                 {/* <span className="arrow"><i className="fa fa-chevron-down"></i></span> */}
             </div>
             <div className="sort-order-container">
-                <label htmlFor="sortOrder">
+                {!isMobile ? 
+                (<label htmlFor="sortOrder">
                     <input type='checkbox' id='sortOrder' disabled={sort.sortField === ""} checked={sort.sortOrder === -1} value={sort.sortOrder} name='sortOrder' onChange={handleChange}/>
                     Desc
-                </label>
+                </label>) :
+                (<button
+                    className="sort-direction-btn"
+                    onClick={() =>
+                    setSort(prev => ({
+                        ...prev,
+                        sortOrder: prev.sortOrder === 1 ? -1 : 1
+                    }))
+                    }
+                    disabled={!sort.sortField}
+                >
+                    {sort.sortOrder === 1 ? 
+                        <i class="fa-solid fa-arrow-down"></i> : 
+                        <i class="fa-solid fa-arrow-up"></i>
+                    }
+                </button>)
+                }
             </div>
         </div>
     )

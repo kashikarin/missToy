@@ -2,8 +2,7 @@
     display: flex;
     flex-direction: row;
     justify-content: end;
-    // margin-block-start: 20px;
-    align-items: center;
+    align-items: end;
     font-size: 1rem;
     gap: 10px;
         @include for-normal-layout {
@@ -12,6 +11,8 @@
         }
     .toysort-select-wrapper {
         position: relative;
+        padding: 0;
+        margin: 0;
         
         span {
                 position: absolute;
@@ -25,14 +26,19 @@
                 pointer-events: none;
             }
         select {
-            padding-inline-end: 1.5rem;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: none !important;
             border-radius: 8px;
+            padding: 12px 1.8rem 10px 12px;
+            line-height: 1.1rem;
+            vertical-align: middle;
             font-family: inherit;
             background-color: var(--clr3);
             width: 150px;
             position: relative;
             cursor: pointer;   
-            transition: border-color 0.2s ease, background-color 0.2s ease;         
             &:focus {
                 outline: none;
             }
@@ -68,3 +74,19 @@
         }
     }
 }
+
+.sort-direction-btn {
+    background: none;
+    border: none;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+    padding: 0;
+
+    &:disabled {
+      opacity: 0.4;
+    }
+  }

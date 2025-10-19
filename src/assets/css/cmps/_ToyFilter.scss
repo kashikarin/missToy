@@ -11,6 +11,7 @@
     border: 1px solid var(--clr2);
     gap: 1rem;
 
+
     h2 {
         line-height: 1.6rem;
         font-weight: 500;
@@ -243,7 +244,8 @@
     // -------- mobile filter ------------------- 
     .toy-filter-mobile-container{
         display: grid;
-        grid-template-columns: 10rem 1fr 10rem;;
+        grid-template-columns: 10rem 1fr 10rem;
+        z-index: 10;
         @include for-normal-layout {
             grid-template-columns: 20px 1fr 20px;
         }
@@ -429,11 +431,6 @@
             }  
         }
     }
-
-    // .filter-sort-wrapper {
-    //     padding-bottom: 20px;
-    // }
-
     
     
     .hide-filter-btn {

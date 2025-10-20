@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { ReactSVG } from 'react-svg'
 import { toyService } from "../../services/toy.service"
+import filterMenuIcon from '/svgs/filter-menu.svg'
 
 export function ToyFilterMobileForm({
     queryOptions, 
@@ -55,7 +56,7 @@ export function ToyFilterMobileForm({
                         className="mobile-filter-menu-button" 
                         onClick={()=> setIsFilterMenuClicked(true)} 
                     >
-                        <ReactSVG src='svgs/filter-menu.svg'/>                    
+                        <ReactSVG src={filterMenuIcon}/>                    
                     </button>) :
                     (
                         <div className="toy-filter-mobile-content">
